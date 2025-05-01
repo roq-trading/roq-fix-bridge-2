@@ -46,13 +46,41 @@ auto create_bridge(auto &handler, auto &settings, auto &config) {
   };
   return fix::bridge::Manager::create(handler, options);
 }
+
+template <typename R>
+auto create_username_to_user(auto &settings, auto &config) {
+  using result_type = std::remove_cvref<R>::type;
+  result_type result;
+  utils::unordered_map<std::string, std::string> account_to_username;
+  for (auto &[_, user] : config.users) {
+    auto res = result.emplace(user.username, user);
+    if (!res.second) {
+      log::fatal(R"(Unexpected: username="{}" configured more than once)"sv, user.username);
+    }
+    // validate account
+    if (settings.oms.oms_route_by_strategy) {
+      // special case: validation must be at run-time
+    } else {
+      if (!std::empty(user.account)) {
+        auto res = account_to_username.emplace(user.account, user.username);
+        if (!res.second) {
+          log::fatal(
+              R"(Unexpected: account="{}" configured more than once (username="{}" and username="{}"))"sv, user.account, user.username, (*res.first).second);
+        }
+      }
+    }
+  }
+  return result;
+}
+
 }  // namespace
 
 // === IMPLEMENTATION ===
 
 Controller::Controller(client::Dispatcher &dispatcher, Settings const &settings, Config const &config, size_t source_count)
     : dispatcher_{dispatcher}, bridge_{create_bridge(*this, settings, config)}, shared_{dispatcher_, *bridge_, settings, config, source_count},
-      session_manager_{shared_} {
+      session_manager_{shared_}, username_to_user_{create_username_to_user<decltype(username_to_user_)>(settings, config)},
+      crypto_{settings.fix.fix_auth_method, settings.fix.fix_auth_timestamp_tolerance} {
 }
 
 void Controller::operator()(Event<Start> const &event) {
@@ -187,8 +215,16 @@ void Controller::operator()(metrics::Writer &writer) const {
 
 // bridge
 
-std::pair<fix::codec::Error, uint32_t> Controller::operator()(fix::bridge::Manager::Credentials const &, uint64_t session_id) {
-  return {};  // XXX validate
+std::pair<fix::codec::Error, std::string_view> Controller::operator()(fix::bridge::Manager::Credentials const &credentials) {
+  auto iter = username_to_user_.find(credentials.username);
+  if (iter == std::end(username_to_user_))
+    return {fix::codec::Error::INVALID_USERNAME, {}};
+  auto &user = (*iter).second;
+  if (credentials.component != user.component)
+    return {fix::codec::Error::INVALID_COMPONENT, {}};
+  if (!crypto_.validate(credentials.password, user.password, credentials.raw_data))
+    return {fix::codec::Error::INVALID_PASSWORD, {}};
+  return {{}, user.account};
 }
 
 void Controller::operator()(CreateOrder const &create_order, uint8_t source) {

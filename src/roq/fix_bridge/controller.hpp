@@ -14,6 +14,8 @@
 #include "roq/fix_bridge/settings.hpp"
 #include "roq/fix_bridge/shared.hpp"
 
+#include "roq/fix_bridge/tools/crypto.hpp"
+
 namespace roq {
 namespace fix_bridge {
 
@@ -63,7 +65,7 @@ struct Controller final : public client::Handler, public fix::bridge::Manager::H
 
   // bridge
 
-  std::pair<fix::codec::Error, uint32_t> operator()(fix::bridge::Manager::Credentials const &, uint64_t session_id) override;
+  std::pair<fix::codec::Error, std::string_view> operator()(fix::bridge::Manager::Credentials const &) override;
 
   void operator()(CreateOrder const &, uint8_t source) override;
   void operator()(ModifyOrder const &, uint8_t source) override;
@@ -112,6 +114,8 @@ struct Controller final : public client::Handler, public fix::bridge::Manager::H
   std::unique_ptr<fix::bridge::Manager> bridge_;
   Shared shared_;
   SessionManager session_manager_;
+  utils::unordered_map<std::string, User> username_to_user_;
+  tools::Crypto crypto_;
 };
 
 }  // namespace fix_bridge
