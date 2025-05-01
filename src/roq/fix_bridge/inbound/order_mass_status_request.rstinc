@@ -1,0 +1,82 @@
+.. tab:: OrderMassStatusRequest (AF)
+
+   This message is used to request the status of orders matching the filters.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 584
+       - MassStatusReqID
+       - See :ref:`roq-fix-bridge-request_id` for further details.
+
+     * - |checkmark|
+       -
+       - 585
+       - MassStatusReqType
+       - Possible values
+
+         * :code:`STATUS_FOR_ORDERS_FOR_A_SECURITY` (:code:`1`)
+         * :code:`STATUS_FOR_ALL_ORDERS` (:code:`7`)
+
+     * -
+       -
+       - 453
+       - NoPartyIDS
+       - See :ref:`roq-fix-bridge-routing` for further details.
+
+     * -
+       - |rightdoublearrow|
+       - 448
+       - PartyID
+       - Strategy ID.
+
+     * -
+       - |rightdoublearrow|
+       - 447
+       - PartyIDSource
+       - Only :code:`PROPRIETARY_CUSTOM_CODE` (:code:`D`) is supported.
+
+     * -
+       - |rightdoublearrow|
+       - 452
+       - PartyRole
+       - Only :code:`CLIENT_ID` (:code:`3`) is supported.
+
+     * -
+       -
+       - 1
+       - Account
+       -
+
+     * -
+       -
+       - 336
+       - TradingSessionID
+       -
+
+     * -
+       -
+       - 55
+       - Symbol
+       -
+
+     * -
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * -
+       -
+       - 54
+       - Side
+       -

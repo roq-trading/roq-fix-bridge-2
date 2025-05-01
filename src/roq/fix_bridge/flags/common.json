@@ -1,0 +1,18 @@
+{
+  "name": "roq/fix_bridge/flags/Common",
+  "type": "flags",
+  "values": [
+    {
+      "name": "config_file",
+      "type": "std/string",
+      "validator": "roq/flags/validators/Path",
+      "description": "Config file"
+    },
+    {
+      "name": "client_listen_address",
+      "type": "std/string",
+      "required": true,
+      "description": "Listen address"
+    }
+  ]
+}

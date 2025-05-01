@@ -1,0 +1,70 @@
+.. tab:: SecurityDefinition (d)
+
+   This message is a reponse to :code:`SecurityDefinitionRequest` (:code:`c`)
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 320
+       - SecurityReqId
+       -
+
+     * - |checkmark|
+       -
+       - 322
+       - SecurityResponseID
+       -
+
+     * - |checkmark|
+       -
+       - 323
+       - SecurityResponseType
+       - Possible values
+
+         * :code:`ACCEPT_SECURITY_PROPOSAL_AS_IS` (:code:`0`)
+         * :code:`REJECT_SECURITY_PROPOSAL` (:code:`5`)
+
+     * -
+       -
+       - 55
+       - Symbol
+       -
+
+     * -
+       -
+       - 231
+       - ContractMultiplier
+       -
+
+     * -
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * -
+       -
+       - 336
+       - TradingSessionID
+       -
+
+     * -
+       -
+       - 562
+       - MinTradeVol
+       -
+
+     * -
+       -
+       - 969
+       - MinPriceIncrement
+       -

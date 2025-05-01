@@ -1,0 +1,67 @@
+[symbols]
+  regex=["USD.*", "BNB"]  # used to subscribe funds
+
+  [symbols.bitmex]
+  regex=["XBTUSD", "XBT.*"]
+
+  [symbols.deribit]
+  regex=".*"
+
+  [symbols.ftx]
+  regex=".*"
+
+  [symbols.binance]
+  regex=".*"
+
+  [symbols.binance-futures]
+  regex=".*"
+
+
+[users]
+
+  [users.MD1]
+  component="roq-fix-client-test"
+  username="tbmd1"
+
+  [users.MD2]
+  component="roq-fix-client-test"
+  username="tbmd2"
+
+  [users.OM1]
+  component="roq-fix-client-test"
+  username="trader"
+  password="secret"
+  account="A1"
+
+  [users.OM2]
+  component="roq-fix-client-test"
+  username="tbom2"
+  password="secret"
+  account="A2"
+
+
+# override default mappings?
+
+[statistics]
+
+  [statistics.FUNDING_RATE]
+  fix_md_entry_type="PRIOR_SETTLE_PRICE"
+
+  [statistics.PRE_SETTLEMENT_PRICE]
+  default_value=-1.23
+  fix_md_entry_type="SETTLEMENT_PRICE"
+
+
+[broadcast]
+  [broadcast.index_to_all_futures]
+  exchange="deribit"
+  source_regex="^(\\w+)-DERIBIT-INDEX$"
+  targets_regex=[
+    "^(\\w+)-PERPETUAL$",
+    "^(\\w+)-[\\d+]\\w+$"
+  ]
+
+[errors]
+
+  [errors.REQUEST_RATE_LIMIT_REACHED]
+  cxl_rej_reason=1139

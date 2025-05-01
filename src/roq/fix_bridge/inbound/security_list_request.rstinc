@@ -1,0 +1,47 @@
+.. tab:: SecurityListRequest (x)
+
+   This message is used the request a list of securities.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 320
+       - SecurityReqId
+       - See :ref:`roq-fix-bridge-request_id` for further details.
+
+     * - |checkmark|
+       -
+       - 559
+       - SecurityListRequestType
+       - Only :code:`ALL_SECURITIES` (:code:`4`) is supported.
+
+     * -
+       -
+       - 55
+       - Symbol
+       -
+
+     * -
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * -
+       -
+       - 263
+       - SubscriptionRequestType
+       - Possible values
+
+         * :code:`SNAPSHOT:` (:code:`0`)
+         * :code:`SNAPSHOT_UPDATES:` (:code:`1`)
+         * :code:`UNSUBSCRIBE:` (:code:`2`)

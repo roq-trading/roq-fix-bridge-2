@@ -1,0 +1,49 @@
+.. tab:: Logon (A)
+
+   This message must be the first message sent by a connecting client session and is used to authenticate that client. See :ref:`roq-fix-bridge-authentication` for further details.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 98
+       - EncryptMethod
+       - Only :code:`NONE` (:code:`0`) is supported.
+
+     * - |checkmark|
+       -
+       - 108
+       - HeartBtInt
+       -
+
+     * -
+       -
+       - 96
+       - RawData
+       - See :ref:`roq-fix-bridge-authentication` for further details.
+
+     * -
+       -
+       - 141
+       - ResetSeqNumFlag
+       - Only :code:`YES` (:code:`Y`) is supported.
+
+     * -
+       -
+       - 553
+       - Username
+       - See :ref:`roq-fix-bridge-authentication` for further details.
+
+     * -
+       -
+       - 554
+       - Password
+       - See :ref:`roq-fix-bridge-authentication` for further details.

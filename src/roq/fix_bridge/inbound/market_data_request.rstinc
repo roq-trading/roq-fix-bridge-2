@@ -1,0 +1,77 @@
+.. tab:: MarketDataRequest (V)
+
+   This message is used to request market data.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 262
+       - MdReqId
+       - See :ref:`roq-fix-bridge-request_id` for further details.
+
+     * - |checkmark|
+       -
+       - 263
+       - SubscriptionRequestType
+       - Possible values
+
+         * :code:`SNAPSHOT:` (:code:`0`)
+         * :code:`SNAPSHOT_UPDATES:` (:code:`1`)
+         * :code:`UNSUBSCRIBE:` (:code:`2`)
+
+     * -
+       -
+       - 264
+       - MarketDepth
+       -
+
+     * -
+       -
+       - 265
+       - MDUpdateType
+       - Only :code:`INCREMENTAL_REFRESH` (:code:`1`) is supported.
+
+     * -
+       -
+       - 266
+       - AggregatedBook
+       -
+
+     * - |checkmark|
+       -
+       - 267
+       - NoMdEntryTypes
+       -
+
+     * - |checkmark|
+       - |rightdoublearrow|
+       - 269
+       - MDEntryType
+       -
+
+     * - |checkmark|
+       -
+       - 146
+       - NoRelatedSym
+       -
+
+     * - |checkmark|
+       - |rightdoublearrow|
+       - 55
+       - Symbol
+       -
+
+     * - |checkmark|
+       - |rightdoublearrow|
+       - 207
+       - SecurityExchange
+       -

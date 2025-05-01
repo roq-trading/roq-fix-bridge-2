@@ -1,0 +1,127 @@
+.. tab:: NewOrderSingle (D)
+
+   This message is used to send an order request.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 11
+       - ClOrdID
+       - See :ref:`roq-fix-bridge-request_id` for further details.
+
+     * -
+       -
+       - 453
+       - NoPartyIDS
+       - See :ref:`roq-fix-bridge-routing` for further details.
+
+     * -
+       - |rightdoublearrow|
+       - 448
+       - PartyID
+       - Strategy ID.
+
+     * -
+       - |rightdoublearrow|
+       - 447
+       - PartyIDSource
+       - Only :code:`PROPRIETARY_CUSTOM_CODE` (:code:`D`) is supported.
+
+     * -
+       - |rightdoublearrow|
+       - 452
+       - PartyRole
+       - Only :code:`CLIENT_ID` (:code:`3`) is supported.
+
+     * -
+       -
+       - 1
+       - Account
+       -
+
+     * -
+       -
+       - 18
+       - ExecInst
+       -
+
+     * - |checkmark|
+       -
+       - 55
+       - Symbol
+       -
+
+     * - |checkmark|
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * - |checkmark|
+       -
+       - 54
+       - Side
+       -
+
+     * - |checkmark|
+       -
+       - 60
+       - TransactTime
+       -
+
+     * - |checkmark|
+       -
+       - 38
+       - OrderQty
+       -
+
+     * - |checkmark|
+       -
+       - 40
+       - OrdType
+       -
+
+     * -
+       -
+       - 44
+       - Price
+       -
+
+     * -
+       -
+       - 99
+       - StopPx
+       -
+
+     * -
+       -
+       - 59
+       - TimeInForce
+       -
+
+     * -
+       -
+       - 58
+       - Text
+       - See :ref:`roq-fix-bridge-params` for further details.
+
+     * -
+       -
+       - 77
+       - PositionEffect
+       -
+
+     * -
+       -
+       - 210
+       - MaxShow
+       -

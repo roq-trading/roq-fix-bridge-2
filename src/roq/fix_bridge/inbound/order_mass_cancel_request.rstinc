@@ -1,0 +1,76 @@
+.. tab:: OrderMassCancelRequest (q)
+
+   This message is used to cancel orders.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 11
+       - ClOrdID
+       - See :ref:`roq-fix-bridge-request_id` for further details.
+
+     * - |checkmark|
+       -
+       - 530
+       - MassCancelRequestType
+       - Possible values
+
+         * :code:`CANCEL_ORDERS_FOR_SECURITY` (:code:`1`)
+         * :code:`CANCEL_ALL_ORDERS` (:code:`7`)
+
+     * -
+       -
+       - 55
+       - Symbol
+       -
+
+     * -
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * -
+       -
+       - 54
+       - Side
+       -
+
+     * - |checkmark|
+       -
+       - 60
+       - TransactTime
+       -
+
+     * -
+       -
+       - 453
+       - NoPartyIDS
+       - See :ref:`roq-fix-bridge-routing` for further details.
+
+     * -
+       - |rightdoublearrow|
+       - 448
+       - PartyID
+       - Strategy ID.
+
+     * -
+       - |rightdoublearrow|
+       - 447
+       - PartyIDSource
+       - Only :code:`PROPRIETARY_CUSTOM_CODE` (:code:`D`) is supported.
+
+     * -
+       - |rightdoublearrow|
+       - 452
+       - PartyRole
+       - Only :code:`CLIENT_ID` (:code:`3`) is supported.

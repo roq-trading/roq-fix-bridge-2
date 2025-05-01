@@ -1,0 +1,36 @@
+.. tab:: MarketDataRequestReject (Y)
+
+   This message is the response to :code:`MarketDataRequest` (:code:`V`) when the request can not be honored.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 262
+       - MDReqID
+       -
+
+     * - |checkmark|
+       -
+       - 281
+       - MDReqRejReason
+       - Possible values
+
+         * :code:`UNKNOWN_SYMBOL` (:code:`0`)
+         * :code:`UNSUPPORTED_SUBSCRIPTION_REQUEST_TYPE` (:code:`4`)
+         * :code:`UNSUPPORTED_MD_UPDATE_TYPE` (:code:`6`)
+         * :code:`UNSUPPORTED_MD_ENTRY_TYPE` (:code:`8`)
+
+     * -
+       -
+       - 58
+       - Text
+       - Reason for reject.

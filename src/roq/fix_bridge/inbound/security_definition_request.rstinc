@@ -1,0 +1,43 @@
+.. tab:: SecurityDefinitionRequest (c)
+
+   This message is used to request a security definition.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 320
+       - SecurityReqId
+       - See :ref:`roq-fix-bridge-request_id` for further details.
+
+     * - |checkmark|
+       -
+       - 321
+       - SecurityRequestType
+       - Unused.
+
+     * -
+       -
+       - 55
+       - Symbol
+       -
+
+     * -
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * -
+       -
+       - 263
+       - SubscriptionRequestType
+       - Only :code:`SNAPSHOT` (:code:`0`) is supported.

@@ -1,0 +1,43 @@
+.. tab:: SecurityStatus (f)
+
+   This message is a reponse to :code:`SecurityStatusRequest` (:code:`e`)
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * -
+       -
+       - 324
+       - SecurityStatusReqID
+       -
+
+     * - |checkmark|
+       -
+       - 55
+       - Symbol
+       -
+
+     * - |checkmark|
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * -
+       -
+       - 336
+       - TradingSessionID
+       -
+
+     * -
+       -
+       - 326
+       - SecurityTradingStatus
+       -

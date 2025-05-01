@@ -1,0 +1,19 @@
+.. tab:: TestRequest (1)
+
+   This message can be sent by either side to verify the connection. The frequency must have been communicated through the :code:`Logon` (:code:`A`) messages.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 112
+       - TestReqId
+       - Value to be echoed.

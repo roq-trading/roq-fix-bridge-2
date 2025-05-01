@@ -1,0 +1,31 @@
+.. tab:: TradingSessionStatusRequest (g)
+
+   This message is used the request market status.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 335
+       - TradSesReqID
+       - See :ref:`roq-fix-bridge-request_id` for further details.
+
+     * -
+       -
+       - 336
+       - TradingSessionID
+       -
+
+     * - |checkmark|
+       -
+       - 263
+       - SubscriptionRequestType
+       - Only :code:`SNAPSHOT` (:code:`0`) is supported.

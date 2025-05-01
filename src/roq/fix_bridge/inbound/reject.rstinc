@@ -1,0 +1,43 @@
+.. tab:: Reject (3)
+
+   Either side may send this message when a session-level rule has been violated.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 45
+       - RefSeqNum
+       -
+
+     * -
+       -
+       - 58
+       - Text
+       -
+
+     * -
+       -
+       - 371
+       - RefTagID
+       -
+
+     * -
+       -
+       - 372
+       - RefMsgType
+       -
+
+     * -
+       -
+       - 373
+       - SessionRejectReason
+       -

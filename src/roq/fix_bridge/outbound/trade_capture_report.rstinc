@@ -1,0 +1,151 @@
+.. tab:: TradeCaptureReport (AE)
+
+   This message is used to report captured trade.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 571
+       - TradeReportID
+       -
+
+     * -
+       -
+       - 568
+       - TradeRequestID
+       -
+
+     * -
+       -
+       - 150
+       - ExecType
+       -
+
+     * -
+       -
+       - 748
+       - TotNumTradeReports
+       -
+
+     * -
+       -
+       - 912
+       - LastRptRequested
+       -
+
+     * -
+       -
+       - 17
+       - ExecID
+       -
+
+     * - |checkmark|
+       -
+       - 570
+       - PreviouslyReported
+       -
+
+     * - |checkmark|
+       -
+       - 55
+       - Symbol
+       -
+
+     * - |checkmark|
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * - |checkmark|
+       -
+       - 32
+       - LastQty
+       -
+
+     * - |checkmark|
+       -
+       - 31
+       - LastPx
+       -
+
+     * - |checkmark|
+       -
+       - 75
+       - TradeDate
+       -
+
+     * - |checkmark|
+       -
+       - 60
+       - TransactTime
+       -
+
+     * - |checkmark|
+       -
+       - 552
+       - NoSides
+       -
+
+     * - |checkmark|
+       - |rightdoublearrow|
+       - 54
+       - Side
+       -
+
+     * - |checkmark|
+       - |rightdoublearrow|
+       - 37
+       - OrderID
+       -
+
+     * -
+       - |rightdoublearrow|
+       - 11
+       - ClOrdID
+       -
+
+     * -
+       - |rightdoublearrow|
+       - 453
+       - NoPartyIDS
+       - See :ref:`roq-fix-bridge-routing` for further details.
+
+     * -
+       - |righttriplearrow|
+       - 448
+       - PartyID
+       - Strategy ID.
+
+     * -
+       - |righttriplearrow|
+       - 447
+       - PartyIDSource
+       - Only :code:`PROPRIETARY_CUSTOM_CODE` (:code:`D`) is supported.
+
+     * -
+       - |righttriplearrow|
+       - 452
+       - PartyRole
+       - Only :code:`CLIENT_ID` (:code:`3`) is supported.
+
+     * -
+       - |rightdoublearrow|
+       - 1
+       - Account
+       -
+
+     * -
+       - |rightdoublearrow|
+       - 77
+       - PositionEffect
+       -

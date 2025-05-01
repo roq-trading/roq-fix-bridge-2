@@ -1,0 +1,18 @@
+{
+  "name": "roq/fix_bridge/flags/OMS",
+  "type": "flags",
+  "values": [
+    {
+      "name": "cancel_on_disconnect",
+      "type": "std/bool",
+      "default": false,
+      "description": "Cancel orders on disconnect?"
+    },
+    {
+      "name": "oms_route_by_strategy",
+      "type": "std/bool",
+      "default": false,
+      "description": "Route order updates using strategy_id?"
+    }
+  ]
+}

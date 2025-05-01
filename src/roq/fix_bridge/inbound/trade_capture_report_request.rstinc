@@ -1,0 +1,83 @@
+.. tab:: TradeCaptureReportRequest (AD)
+
+   This message is used to request trade capture reports.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 568
+       - TradeRequestID
+       - See :ref:`roq-fix-bridge-request_id` for further details.
+
+     * - |checkmark|
+       -
+       - 569
+       - TradeRequestType
+       -
+
+     * -
+       -
+       - 263
+       - SubscriptionRequestType
+       - Possible values
+
+         * :code:`SNAPSHOT:` (:code:`0`)
+         * :code:`SNAPSHOT_UPDATES:` (:code:`1`)
+         * :code:`UNSUBSCRIBE:` (:code:`2`)
+
+     * -
+       -
+       - 37
+       - OrderID
+       -
+
+     * -
+       -
+       - 11
+       - ClOrdID
+       - See :ref:`roq-fix-bridge-request_id` for further details.
+
+     * -
+       -
+       - 453
+       - NoPartyIDS
+       - See :ref:`roq-fix-bridge-routing` for further details.
+
+     * -
+       - |rightdoublearrow|
+       - 448
+       - PartyID
+       - Strategy ID.
+
+     * -
+       - |rightdoublearrow|
+       - 447
+       - PartyIDSource
+       - Only :code:`PROPRIETARY_CUSTOM_CODE` (:code:`D`) is supported.
+
+     * -
+       - |rightdoublearrow|
+       - 452
+       - PartyRole
+       - Only :code:`CLIENT_ID` (:code:`3`) is supported.
+
+     * -
+       -
+       - 55
+       - Symbol
+       -
+
+     * -
+       -
+       - 207
+       - SecurityExchange
+       -

@@ -1,0 +1,52 @@
+.. tab:: SecurityList (y)
+
+   This message is a response to :code:`SecurityListRequest` (:code:`x`)
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 320
+       - SecurityReqId
+       -
+
+     * - |checkmark|
+       -
+       - 322
+       - SecurityResponseID
+       -
+
+     * - |checkmark|
+       -
+       - 560
+       - SecurityRequestResult
+       - Possible values
+
+         * :code:`VALID` (:code:`0`)
+         * :code:`INVALID_OR_UNSUPPORTED` (:code:`1`)
+
+     * - |checkmark|
+       -
+       - 146
+       - NoRelatedSym
+       -
+
+     * - |checkmark|
+       - |rightdoublearrow|
+       - 55
+       - Symbol
+       -
+
+     * - |checkmark|
+       - |rightdoublearrow|
+       - 207
+       - SecurityExchange
+       -

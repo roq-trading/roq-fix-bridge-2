@@ -1,0 +1,84 @@
+{
+  "name": "roq/fix_bridge/flags/Test",
+  "type": "flags",
+  "values": [
+    {
+      "name": "block_client_on_not_ready",
+      "type": "std/bool",
+      "default": false,
+      "description": "Block client from logon when account not ready?"
+    },
+    {
+      "name": "terminate_on_timeout",
+      "type": "std/bool",
+      "default": false,
+      "description": "Terminate on order-ack timeout?"
+    },
+    {
+      "name": "terminate_on_stream_disconnect",
+      "type": "std/bool",
+      "default": false,
+      "description": "Terminate on stream disconnect?"
+    },
+    {
+      "name": "terminate_on_disconnect",
+      "type": "std/bool",
+      "default": false,
+      "description": "Terminate on gateway disconnect?"
+    },
+    {
+      "name": "silence_non_final_order_ack",
+      "type": "std/bool",
+      "default": false,
+      "description": "Silently drop non-final order-ack's?"
+    },
+    {
+      "name": "skip_order_download",
+      "type": "std/bool",
+      "default": false,
+      "description": "Skip downloaded orders?"
+    },
+    {
+      "name": "disconnect_client_on_stale_market_data_stream",
+      "type": "std/bool",
+      "default": false,
+      "description": "Disconnect client(s) when market data streams are disconnected?"
+    },
+    {
+      "name": "trade_summary_try_non_empty",
+      "type": "std/bool",
+      "default": false,
+      "description": "Test #1"
+    },
+    {
+      "name": "trade_summary_try_value",
+      "type": "std/uint32",
+      "default": 0,
+      "description": "Test #2"
+    },
+    {
+      "name": "strict_checking",
+      "type": "std/bool",
+      "default": false,
+      "description": "Hard failure on assertions"
+    },
+    {
+      "name": "test_md_entry_position_no",
+      "type": "std/bool",
+      "default": false,
+      "description": "Populate md_entry_position_no? (only for limited depth)"
+    },
+    {
+      "name": "test_default_decimal_digits",
+      "type": "std/uint32",
+      "default": 12,
+      "description": "Default number of decimals"
+    },
+    {
+      "name": "test_request_latency",
+      "type": "std/bool",
+      "default": false,
+      "description": "Log request round-trip latencies?"
+    }
+  ]
+}

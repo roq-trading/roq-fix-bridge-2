@@ -1,0 +1,110 @@
+{
+  "name": "roq/fix_bridge/flags/FIX",
+  "type": "flags",
+  "values": [
+    {
+      "name": "fix_version",
+      "type": "std/string",
+      "default": "4.4",
+      "description": "FIX version"
+    },
+    {
+      "name": "fix_comp_id",
+      "type": "std/string",
+      "default": "roq-fix-bridge",
+      "description": "Component identifier"
+    },
+    {
+      "name": "fix_auth_method",
+      "type": "std/string",
+      "description": "Authentication method: (empty), hmac_sha256, hmac_sha256_ts"
+    },
+    {
+      "name": "fix_auth_timestamp_tolerance",
+      "type": "std/nanoseconds",
+      "validator": "roq/flags/validators/TimePeriod",
+      "default": "5s",
+      "description": "Timestamp tolerance used with authentication"
+    },
+    {
+      "name": "fix_logon_timeout",
+      "type": "std/nanoseconds",
+      "validator": "roq/flags/validators/TimePeriod",
+      "description": "Logon timeout, heartbeat freq is use if not specified"
+    },
+    {
+      "name": "fix_logon_heartbeat_min",
+      "type": "std/nanoseconds",
+      "validator": "roq/flags/validators/TimePeriod",
+      "default": "5s",
+      "description": "Minimum accepted client ping frequency"
+    },
+    {
+      "name": "fix_logon_heartbeat_max",
+      "type": "std/nanoseconds",
+      "validator": "roq/flags/validators/TimePeriod",
+      "default": "60s",
+      "description": "Maximum accepted client ping frequency"
+    },
+    {
+      "name": "fix_heartbeat_freq",
+      "type": "std/nanoseconds",
+      "validator": "roq/flags/validators/TimePeriod",
+      "default": "5s",
+      "description": "Server to client ping frequency"
+    },
+    {
+      "name": "fix_decode_buffer_size",
+      "type": "std/uint32",
+      "default": 1048576,
+      "description": "Decode buffer size"
+    },
+    {
+      "name": "fix_encode_buffer_size",
+      "type": "std/uint32",
+      "default": 10485760,
+      "description": "Encode buffer size"
+    },
+    {
+      "name": "fix_md_full_size",
+      "type": "std/uint32",
+      "default": 262144,
+      "description": "Pre-allocate"
+    },
+    {
+      "name": "fix_md_inc_size",
+      "type": "std/uint32",
+      "default": 262144,
+      "description": "Pre-allocate"
+    },
+    {
+      "name": "fix_sec_list_grp_size",
+      "type": "std/uint32",
+      "default": 32768,
+      "description": "Pre-allocate"
+    },
+    {
+      "name": "fix_bids_asks_size",
+      "type": "std/uint32",
+      "default": 262144,
+      "description": "Pre-allocate"
+    },
+    {
+      "name": "fix_debug",
+      "type": "std/bool",
+      "default": false,
+      "description": "Debug fix messages?"
+    },
+    {
+      "name": "fix_log_path",
+      "type": "std/string",
+      "description": "Filename for logging fix messages"
+    },
+    {
+      "name": "fix_disable_req_id_validation",
+      "type": "std/bool",
+      "default": false,
+      "description": "Disable request ID validation?"
+    }
+  ]
+}

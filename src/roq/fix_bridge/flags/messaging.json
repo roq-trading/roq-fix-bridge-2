@@ -1,0 +1,30 @@
+{
+  "name": "roq/fix_bridge/flags/Messaging",
+  "type": "flags",
+  "values": [
+    {
+      "name": "init_missing_md_entry_type_to_zero",
+      "type": "std/bool",
+      "default": false,
+      "description": "Initialize missing MDEntryType to zero?"
+    },
+    {
+      "name": "execution_report_using_base_currency",
+      "type": "std/bool",
+      "default": false,
+      "description": "Use base currency for execution report?"
+    },
+    {
+      "name": "exchange_time_as_sending_time",
+      "type": "std/bool",
+      "default": false,
+      "description": "Use exchange time for sending time (tag 52)?"
+    },
+    {
+      "name": "top_of_book_from_market_by_price",
+      "type": "std/bool",
+      "default": false,
+      "description": "Use market by price as the source for top of book?"
+    }
+  ]
+}

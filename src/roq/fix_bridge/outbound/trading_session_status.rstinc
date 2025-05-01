@@ -1,0 +1,43 @@
+.. tab:: TradingSessionStatus (h)
+
+   This message is a response to :code:`TradingSessionRequest` (:code:`g`).
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * -
+       -
+       - 335
+       - TradSesReqID
+       -
+
+     * - |checkmark|
+       -
+       - 336
+       - TradingSessionID
+       -
+
+     * -
+       -
+       - 340
+       - TradSesStatus
+       -
+
+     * -
+       -
+       - 567
+       - TradSesStatusRejReason
+       - Only sent with reject and then always :code:`OTHER` (:code:`99`).
+
+     * -
+       -
+       - 58
+       - Text
+       - Reason for reject.

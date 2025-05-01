@@ -1,0 +1,151 @@
+.. tab:: PositionReport (AP)
+
+   This message is used to report position updates.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 721
+       - PosMaintRptID
+       -
+
+     * -
+       -
+       - 710
+       - PosReqID
+       -
+
+     * -
+       -
+       - 724
+       - PosReqType
+       - Always :code:`POSITIONS` (:code:`0`).
+
+     * -
+       -
+       - 263
+       - SubscriptionRequestType
+       -
+
+     * -
+       -
+       - 727
+       - TotalNumPosReports
+       -
+
+     * - |checkmark|
+       -
+       - 728
+       - PosReqResult
+       - Always :code:`VALID` (:code:`0`).
+
+     * - |checkmark|
+       -
+       - 715
+       - ClearingBusinessDate
+       -
+
+     * -
+       -
+       - 453
+       - NoPartyIDS
+       - See :ref:`roq-fix-bridge-routing` for further details.
+
+     * -
+       - |rightdoublearrow|
+       - 448
+       - PartyID
+       - Strategy ID.
+
+     * -
+       - |rightdoublearrow|
+       - 447
+       - PartyIDSource
+       - Only :code:`PROPRIETARY_CUSTOM_CODE` (:code:`D`) is supported.
+
+     * -
+       - |rightdoublearrow|
+       - 452
+       - PartyRole
+       - Only :code:`CLIENT_ID` (:code:`3`) is supported.
+
+     * - |checkmark|
+       -
+       - 1
+       - Account
+       -
+
+     * - |checkmark|
+       -
+       - 581
+       - AccountType
+       -
+
+     * - |checkmark|
+       -
+       - 55
+       - Symbol
+       -
+
+     * -
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * -
+       -
+       - 15
+       - Currency
+       -
+
+     * - |checkmark|
+       -
+       - 730
+       - SettlPrice
+       -
+
+     * - |checkmark|
+       -
+       - 731
+       - SettlPriceType
+       -
+
+     * - |checkmark|
+       -
+       - 734
+       - PriorSettlPrice
+       -
+
+     * -
+       -
+       - 702
+       - NoPositions
+       -
+
+     * - |checkmark|
+       - |rightdoublearrow|
+       - 703
+       - PosType
+       -
+
+     * -
+       -
+       - 753
+       - NoPosAmt
+       -
+
+     * -
+       -
+       - 58
+       - Text
+       -

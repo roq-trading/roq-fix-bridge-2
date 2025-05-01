@@ -1,0 +1,43 @@
+.. tab:: BusinessMessageReject (j)
+
+   Either side may send this message when an application-level rule has been violated and there are no specific messages available to cmmunicate the failure.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 45
+       - RefSeqNum
+       - Sequence number causing the reject.
+
+     * - |checkmark|
+       -
+       - 372
+       - RefMsgType
+       - Message causing the reject.
+
+     * - |checkmark|
+       -
+       - 379
+       - BusinessRejectRefID
+       - Request ID (message specific).
+
+     * - |checkmark|
+       -
+       - 380
+       - BusinessRejectReason
+       -
+
+     * - |checkmark|
+       -
+       - 58
+       - Text
+       - Reason for the reject.

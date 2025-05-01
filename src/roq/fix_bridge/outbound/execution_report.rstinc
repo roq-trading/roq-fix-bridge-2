@@ -1,0 +1,241 @@
+.. tab:: ExecutionReport (8)
+
+   This message is used to report current status of an order.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 37
+       - OrderID
+       -
+
+     * -
+       -
+       - 11
+       - ClOrdID
+       -
+
+     * -
+       -
+       - 41
+       - OrigClOrdID
+       -
+
+     * -
+       -
+       - 790
+       - OrdStatusReqID
+       -
+
+     * -
+       -
+       - 584
+       - MassStatusReqID
+       -
+
+     * -
+       -
+       - 911
+       - TotNumReports
+       -
+
+     * -
+       -
+       - 912
+       - LastRptRequested
+       -
+
+     * -
+       -
+       - 453
+       - NoPartyIDS
+       - See :ref:`roq-fix-bridge-routing` for further details.
+
+     * -
+       - |rightdoublearrow|
+       - 448
+       - PartyID
+       - Strategy ID.
+
+     * -
+       - |rightdoublearrow|
+       - 447
+       - PartyIDSource
+       - Only :code:`PROPRIETARY_CUSTOM_CODE` (:code:`D`) is supported.
+
+     * -
+       - |rightdoublearrow|
+       - 452
+       - PartyRole
+       - Only :code:`CLIENT_ID` (:code:`3`) is supported.
+
+     * - |checkmark|
+       -
+       - 17
+       - ExecID
+       -
+
+     * - |checkmark|
+       -
+       - 150
+       - ExecType
+       -
+
+     * - |checkmark|
+       -
+       - 39
+       - OrdStatus
+       -
+
+     * -
+       -
+       - 636
+       - WorkingIndicator
+       -
+
+     * -
+       -
+       - 103
+       - OrdRejReason
+       -
+
+     * -
+       -
+       - 1
+       - Account
+       -
+
+     * -
+       -
+       - 581
+       - AccountType
+       -
+
+     * - |checkmark|
+       -
+       - 55
+       - Symbol
+       -
+
+     * - |checkmark|
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * - |checkmark|
+       -
+       - 54
+       - Side
+       -
+
+     * -
+       -
+       - 40
+       - OrdType
+       -
+
+     * -
+       -
+       - 38
+       - OrderQty
+       -
+
+     * -
+       -
+       - 44
+       - Price
+       -
+
+     * -
+       -
+       - 99
+       - StopPx
+       -
+
+     * -
+       -
+       - 15
+       - Currency
+       -
+
+     * -
+       -
+       - 59
+       - TimeInForce
+       -
+
+     * -
+       -
+       - 18
+       - ExecInst
+       -
+
+     * -
+       -
+       - 32
+       - LastQty
+       -
+
+     * -
+       -
+       - 31
+       - LastPx
+       -
+
+     * - |checkmark|
+       -
+       - 151
+       - LeavesQty
+       -
+
+     * - |checkmark|
+       -
+       - 14
+       - CumQty
+       -
+
+     * - |checkmark|
+       -
+       - 6
+       - AvgPx
+       -
+
+     * -
+       -
+       - 60
+       - TransactTime
+       -
+
+     * -
+       -
+       - 77
+       - PositionEffect
+       -
+
+     * -
+       -
+       - 210
+       - MaxShow
+       -
+
+     * -
+       -
+       - 58
+       - Text
+       -
+
+     * -
+       -
+       - 851
+       - LastLiquidityInd
+       -

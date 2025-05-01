@@ -1,0 +1,67 @@
+.. tab:: OrderCancelReject (9)
+
+   This message is used when an order cancel request must be rejected.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 37
+       - OrderID
+       -
+
+     * - |checkmark|
+       -
+       - 11
+       - ClOrdID
+       -
+
+     * - |checkmark|
+       -
+       - 41
+       - OrigClOrdID
+       -
+
+     * -
+       -
+       - 39
+       - OrdStatus
+       -
+
+     * -
+       -
+       - 1
+       - Account
+       -
+
+     * -
+       -
+       - 434
+       - CxlRejResponseTo
+       - Possible values
+
+         * :code:`ORDER_CANCEL_REQUEST` (:code:`1`)
+         * :code:`ORDER_CANCEL_REPLACE_REQUEST` (:code:`2`)
+
+     * -
+       -
+       - 102
+       - CxlRejReason
+       - Possible values
+
+         * :code:`DUPLICATE_CL_ORD_ID` (:code:`6`)
+         * :code:`OTHER` (:code:`99`)
+
+     * -
+       -
+       - 58
+       - Text
+       - Reason for reject.

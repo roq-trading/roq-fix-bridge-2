@@ -1,0 +1,55 @@
+.. tab:: TradeCaptureReportRequestAck (AQ)
+
+   Response
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 568
+       - TradeRequestID
+       -
+
+     * - |checkmark|
+       -
+       - 569
+       - TradeRequestType
+       -
+
+     * - |checkmark|
+       -
+       - 749
+       - TradeRequestResult
+       -
+
+     * - |checkmark|
+       -
+       - 750
+       - TradeRequestStatus
+       -
+
+     * - |checkmark|
+       -
+       - 55
+       - Symbol
+       -
+
+     * - |checkmark|
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * -
+       -
+       - 58
+       - Text
+       -

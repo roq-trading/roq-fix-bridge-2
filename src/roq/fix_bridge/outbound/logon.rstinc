@@ -1,0 +1,25 @@
+.. tab:: Logon (A)
+
+   This message is used to acknowledge successful authentication.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 98
+       - EncryptMethod
+       - Only :code:`NONE` (:code:`0`) is supported.
+
+     * - |checkmark|
+       -
+       - 108
+       - HeartBtInt
+       -

@@ -1,0 +1,52 @@
+package:
+  name: roq-fix-bridge-2
+  version: {{ GIT_DESCRIBE_TAG }}
+
+source:
+  git_url: ..
+
+build:
+  skip: true  # [not unix]
+  number: {{ ROQ_BUILD_NUMBER if ROQ_BUILD_NUMBER is defined else GIT_DESCRIBE_NUMBER }}
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - clang-format
+    - cmake
+    - coreutils                                                                                                                                                    
+    - git
+    - jinja2
+    - make
+    - pkg-config
+    - roq-autogen
+  host:
+    - catch2
+    - fmt
+    - libabseil
+    - roq-algo
+    - roq-api
+    - roq-cache
+    - roq-client
+    - roq-codec
+    - roq-core
+    - roq-fix
+    - roq-flags
+    - roq-io
+    - roq-logging
+    - roq-market
+    - roq-oss-benchmark
+    - roq-oss-magic_enum
+    - roq-oss-nameof
+    - roq-oss-tomlplusplus
+    - roq-oss-unordered_dense
+    - roq-utils
+
+about:
+  home: https://roq-trading.com
+  doc_url: https://roq-trading.com/docs
+  dev_url: https://github.com/roq-trading
+  license: Commercial
+  license_family: PROPRIETARY
+  license_file: LICENSE
+  summary: Roq FIX Bridge

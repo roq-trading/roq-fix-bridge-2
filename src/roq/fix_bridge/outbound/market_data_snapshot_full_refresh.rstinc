@@ -1,0 +1,88 @@
+.. tab:: MarketDataSnapshotFullRefresh (W)
+
+   This message is used for snapshot when market data have been requested.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 262
+       - MDReqID
+       -
+
+     * - |checkmark|
+       -
+       - 55
+       - Symbol
+       -
+
+     * - |checkmark|
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * - |checkmark|
+       -
+       - 268
+       - NoMdEntries
+       -
+
+     * - |checkmark|
+       - |rightdoublearrow|
+       - 269
+       - MDEntryType
+       - Possible values
+
+         * :code:`BID` (:code:`0`)
+         * :code:`OFFER` (:code:`1`)
+
+     * - |checkmark|
+       - |rightdoublearrow|
+       - 270
+       - MDEntryPx
+       -
+
+     * - |checkmark|
+       - |rightdoublearrow|
+       - 271
+       - MDEntrySize
+       -
+
+     * -
+       - |rightdoublearrow|
+       - 272
+       - MDEntryDate
+       -
+
+     * -
+       - |rightdoublearrow|
+       - 273
+       - MDEntryTime
+       -
+
+     * -
+       - |rightdoublearrow|
+       - 336
+       - TradingSessionID
+       -
+
+     * -
+       - |rightdoublearrow|
+       - 346
+       - NumberOfOrders
+       -
+
+     * -
+       - |rightdoublearrow|
+       - 290
+       - MDEntryPositionNo
+       -

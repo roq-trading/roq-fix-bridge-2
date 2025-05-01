@@ -1,0 +1,91 @@
+.. tab:: OrderMassCancelReport (r)
+
+   This message is used to acknowledge a request to cancel orders.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 11
+       - ClOrdID
+       -
+
+     * - |checkmark|
+       -
+       - 37
+       - OrderID
+       -
+
+     * - |checkmark|
+       -
+       - 530
+       - MassCancelRequestType
+       -
+
+     * - |checkmark|
+       -
+       - 531
+       - MassCancelResponse
+       -
+
+     * -
+       -
+       - 532
+       - MassCancelRejectReason
+       -
+
+     * -
+       -
+       - 55
+       - Symbol
+       -
+
+     * -
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * -
+       -
+       - 54
+       - Side
+       -
+
+     * -
+       -
+       - 58
+       - Text
+       - Reason for reject.
+
+     * -
+       -
+       - 453
+       - NoPartyIDS
+       - See :ref:`roq-fix-bridge-routing` for further details.
+
+     * -
+       - |rightdoublearrow|
+       - 448
+       - PartyID
+       - Strategy ID.
+
+     * -
+       - |rightdoublearrow|
+       - 447
+       - PartyIDSource
+       - Only :code:`PROPRIETARY_CUSTOM_CODE` (:code:`D`) is supported.
+
+     * -
+       - |rightdoublearrow|
+       - 452
+       - PartyRole
+       - Only :code:`CLIENT_ID` (:code:`3`) is supported.

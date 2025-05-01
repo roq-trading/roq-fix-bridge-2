@@ -1,0 +1,37 @@
+.. tab:: SecurityStatusRequest (e)
+
+   This message is used to request current trading status for a security.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * - |checkmark|
+       -
+       - 324
+       - SecurityStatusReqId
+       - See :ref:`roq-fix-bridge-request_id` for further details.
+
+     * - |checkmark|
+       -
+       - 55
+       - Symbol
+       -
+
+     * - |checkmark|
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * - |checkmark|
+       -
+       - 263
+       - SubscriptionRequestType
+       - Only :code:`SNAPSHOT` (:code:`0`) is supported.

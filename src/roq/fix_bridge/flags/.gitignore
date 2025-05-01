@@ -1,0 +1,17 @@
+!!! THIS FILE HAS BEEN AUTO-GENERATED !!!
+roq-fix-bridge-flags
+common.rstinc
+oms.rstinc
+fix.rstinc
+messaging.rstinc
+test.rstinc
+common.hpp
+oms.hpp
+fix.hpp
+messaging.hpp
+test.hpp
+common.cpp
+oms.cpp
+fix.cpp
+messaging.cpp
+test.cpp

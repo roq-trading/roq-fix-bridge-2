@@ -1,0 +1,103 @@
+.. tab:: OrderCancelReplaceRequest (G)
+
+   This message is used to modify an order.
+
+   .. list-table::
+     :header-rows: 1
+     :widths: 5 5 10 30 50
+
+     * -
+       -
+       - Tag
+       - Name
+       - Comments
+
+     * -
+       -
+       - 37
+       - OrderID
+       -
+
+     * -
+       -
+       - 453
+       - NoPartyIDS
+       - See :ref:`roq-fix-bridge-routing` for further details.
+
+     * -
+       - |rightdoublearrow|
+       - 448
+       - PartyID
+       - Strategy ID.
+
+     * -
+       - |rightdoublearrow|
+       - 447
+       - PartyIDSource
+       - Only :code:`PROPRIETARY_CUSTOM_CODE` (:code:`D`) is supported.
+
+     * -
+       - |rightdoublearrow|
+       - 452
+       - PartyRole
+       - Only :code:`CLIENT_ID` (:code:`3`) is supported.
+
+     * - |checkmark|
+       -
+       - 41
+       - OrigClOrdID
+       - See :ref:`roq-fix-bridge-request_id` for further details.
+
+     * - |checkmark|
+       -
+       - 11
+       - ClOrdID
+       - See :ref:`roq-fix-bridge-request_id` for further details.
+
+     * -
+       -
+       - 1
+       - Account
+       -
+
+     * - |checkmark|
+       -
+       - 55
+       - Symbol
+       -
+
+     * - |checkmark|
+       -
+       - 207
+       - SecurityExchange
+       -
+
+     * -
+       -
+       - 38
+       - OrderQty
+       - Some exchanges only accept quantity *or* price. This field is therefore not required.
+
+     * -
+       -
+       - 44
+       - Price
+       -
+
+     * - |checkmark|
+       -
+       - 54
+       - Side
+       -
+
+     * - |checkmark|
+       -
+       - 60
+       - TransactTime
+       -
+
+     * - |checkmark|
+       -
+       - 40
+       - OrdType
+       -
