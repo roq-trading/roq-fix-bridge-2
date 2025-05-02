@@ -44,41 +44,6 @@ struct Config final : public client::Config {
 }  // namespace fix_bridge
 }  // namespace roq
 
-// symbols
-
-template <>
-struct fmt::formatter<std::pair<std::string const, roq::utils::unordered_set<std::string>>> {
-  constexpr auto parse(format_parse_context &context) { return std::begin(context); }
-  auto format(std::pair<std::string const, roq::utils::unordered_set<std::string>> const &value, format_context &context) const {
-    using namespace std::literals;
-    return fmt::format_to(context.out(), "{}={{{}}}"sv, value.first, fmt::join(value.second, ", "sv));
-  }
-};
-
-// default values
-
-template <>
-struct fmt::formatter<std::pair<roq::StatisticsType const, double>> {
-  constexpr auto parse(format_parse_context &context) { return std::begin(context); }
-  auto format(std::pair<roq::StatisticsType const, double> const &value, format_context &context) const {
-    using namespace std::literals;
-    return fmt::format_to(context.out(), "{}={}"sv, value.first, value.second);
-  }
-};
-
-// statistics
-
-template <>
-struct fmt::formatter<std::pair<roq::StatisticsType const, roq::fix::MDEntryType>> {
-  constexpr auto parse(format_parse_context &context) { return std::begin(context); }
-  auto format(std::pair<roq::StatisticsType const, roq::fix::MDEntryType> const &value, format_context &context) const {
-    using namespace std::literals;
-    return fmt::format_to(context.out(), "{}={}({})"sv, value.first, value.second, roq::fix::Codec<roq::fix::MDEntryType>::encode(value.second));
-  }
-};
-
-// config
-
 template <>
 struct fmt::formatter<roq::fix_bridge::Config> {
   constexpr auto parse(format_parse_context &context) { return std::begin(context); }
