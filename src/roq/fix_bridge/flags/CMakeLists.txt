@@ -32,9 +32,9 @@ roq_autogen_hpp(
   TEMPLATE_DIR
   ${TEMPLATE_DIR}
   TEMPLATE_TYPE
-  "state")
+  "flags")
 
-add_custom_target(flags-autogen-headers ALL DEPENDS ${AUTOGEN_HEADERS})
+add_custom_target(${TARGET_NAME}-autogen-headers ALL DEPENDS ${AUTOGEN_HEADERS})
 
 roq_autogen_cpp(
   OUTPUT
@@ -44,7 +44,7 @@ roq_autogen_cpp(
   TEMPLATE_DIR
   ${TEMPLATE_DIR}
   TEMPLATE_TYPE
-  "state")
+  "flags")
 
 roq_gitignore(
   OUTPUT
@@ -57,6 +57,6 @@ roq_gitignore(
 
 add_library(${TARGET_NAME} OBJECT ${AUTOGEN_SOURCES})
 
-add_dependencies(${TARGET_NAME} flags-autogen-headers)
+add_dependencies(${TARGET_NAME} ${TARGET_NAME}-autogen-headers)
 
 target_link_libraries(${TARGET_NAME} PRIVATE roq-api::roq-api roq-flags::roq-flags absl::flags)

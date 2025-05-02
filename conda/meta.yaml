@@ -29,7 +29,6 @@ requirements:
     - roq-cache
     - roq-client
     - roq-codec
-    - roq-core
     - roq-fix
     - roq-flags
     - roq-io
@@ -46,7 +45,7 @@ about:
   home: https://roq-trading.com
   doc_url: https://roq-trading.com/docs
   dev_url: https://github.com/roq-trading
-  license: Commercial
-  license_family: PROPRIETARY
+  license: BSD-3-Clause
+  license_family: BSD
   license_file: LICENSE
   summary: Roq FIX Bridge

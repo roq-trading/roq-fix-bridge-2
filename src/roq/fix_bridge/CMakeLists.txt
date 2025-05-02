@@ -19,6 +19,8 @@ add_subdirectory(tools)
 
 add_executable(${TARGET_NAME} ${SOURCES})
 
+add_dependencies(${TARGET_NAME} ${PROJECT_NAME}-flags-autogen-headers)
+
 target_link_libraries(
   ${TARGET_NAME}
   PRIVATE ${PROJECT_NAME}-flags
@@ -27,7 +29,6 @@ target_link_libraries(
           roq-cache::roq-cache
           roq-client::roq-client
           roq-client::roq-client-flags
-          roq-core::roq-core
           roq-fix::roq-fix
           roq-flags::roq-flags
           roq-io::roq-io

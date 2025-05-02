@@ -36,7 +36,6 @@ find_package(roq-api REQUIRED)
 find_package(roq-cache REQUIRED)
 find_package(roq-client REQUIRED)
 find_package(roq-codec REQUIRED)
-find_package(roq-core REQUIRED)
 find_package(roq-fix REQUIRED)
 find_package(roq-flags REQUIRED)
 find_package(roq-io REQUIRED)
@@ -66,7 +65,7 @@ endif()
 
 find_program(ROQ_AUTOGEN roq-autogen REQUIRED)
 
-set(TEMPLATE_DIR ${CMAKE_SOURCE_DIR}/autogen)
+set(TEMPLATE_DIR ${CMAKE_SOURCE_DIR}/scripts/templates)
 
 # clang-format
 
