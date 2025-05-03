@@ -16,6 +16,12 @@ auto create_bridge(auto &handler, auto &settings, auto &config) {
   std::vector<std::pair<Error, fix::CxlRejReason>> cxl_rej_reason_mapping;
   for (auto &item : config.cxl_rej_reason)
     cxl_rej_reason_mapping.emplace_back(item);
+  std::vector<std::pair<StatisticsType, double>> default_values;
+  for (auto &item : config.default_values)
+    default_values.emplace_back(item);
+  std::vector<std::pair<StatisticsType, fix::MDEntryType>> statistics;
+  for (auto &item : config.statistics)
+    statistics.emplace_back(item);
   auto options = fix::bridge::Manager::Options{
       // session
       .comp_id = settings.fix.fix_comp_id,
@@ -25,6 +31,8 @@ auto create_bridge(auto &handler, auto &settings, auto &config) {
       .heartbeat_freq = utils::safe_cast(settings.fix.fix_heartbeat_freq),
       // market data
       .top_of_book_from_market_by_price = settings.messaging.top_of_book_from_market_by_price,
+      .default_values = default_values,
+      .statistics = statistics,
       // order management
       .route_by_strategy = settings.oms.oms_route_by_strategy,
       .strict_checking = settings.test.strict_checking,
