@@ -13,15 +13,15 @@ namespace fix_bridge {
 
 namespace {
 auto create_bridge(auto &handler, auto &settings, auto &config) {
-  std::vector<std::pair<Error, fix::CxlRejReason>> cxl_rej_reason_mapping;
-  for (auto &item : config.cxl_rej_reason)
-    cxl_rej_reason_mapping.emplace_back(item);
   std::vector<std::pair<StatisticsType, double>> default_values;
   for (auto &item : config.default_values)
     default_values.emplace_back(item);
   std::vector<std::pair<StatisticsType, fix::MDEntryType>> statistics;
   for (auto &item : config.statistics)
     statistics.emplace_back(item);
+  std::vector<std::pair<Error, fix::CxlRejReason>> cxl_rej_reason_mapping;
+  for (auto &item : config.cxl_rej_reason)
+    cxl_rej_reason_mapping.emplace_back(item);
   auto options = fix::bridge::Manager::Options{
       // session
       .comp_id = settings.fix.fix_comp_id,
