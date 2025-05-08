@@ -25,12 +25,15 @@ namespace tools {
 
 namespace {
 auto parse_method(auto &auth_method) {
-  if (std::empty(auth_method))
+  if (std::empty(auth_method)) {
     return Crypto::Method::UNDEFINED;
-  if (auth_method == "hmac_sha256"sv)
+  }
+  if (auth_method == "hmac_sha256"sv) {
     return Crypto::Method::HMAC_SHA256;
-  if (auth_method == "hmac_sha256_ts"sv)
+  }
+  if (auth_method == "hmac_sha256_ts"sv) {
     return Crypto::Method::HMAC_SHA256_TS;
+  }
   log::fatal(R"(Unexpected: auth_method="{}")"sv, auth_method);
 };
 }  // namespace

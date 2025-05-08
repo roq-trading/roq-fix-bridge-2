@@ -44,15 +44,17 @@ auto create_network_address(auto &settings) {
   auto address = settings.common.client_listen_address;
   uint16_t port = {};
   if (utils::charconv::try_parse<uint16_t>(address, [&](auto value) { port = value; })) {
-    if (port == 0)
+    if (port == 0) {
       log::fatal("Unexpected listen port={}"sv, port);
+    }
     log::info(R"(The service will be started on port={})"sv, port);
     return io::NetworkAddress{port};
   }
   log::info(R"(The service will be started on path="{}")"sv, address);
   auto directory = std::filesystem::path{address}.parent_path();
-  if (!std::empty(directory) && std::filesystem::create_directory(directory))
+  if (!std::empty(directory) && std::filesystem::create_directory(directory)) {
     log::info(R"(Created path="{}")"sv, directory.c_str());
+  }
   return io::NetworkAddress{address};
 }
 }  // namespace
@@ -130,10 +132,12 @@ void SessionManager::remove_session(uint64_t session_id) {
 
 void SessionManager::remove_zombies() {
   auto count = std::size(zombies_);
-  if (count == 0)
+  if (count == 0) {
     return;
-  for (auto iter : zombies_)
+  }
+  for (auto iter : zombies_) {
     remove_session(iter);
+  }
   zombies_.clear();
   log::info("Removed {} zombied session(s) (remaining: {})"sv, count, std::size(sessions_));
 }

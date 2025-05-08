@@ -34,16 +34,18 @@ struct SessionManager final : public io::sys::Timer::Handler, public io::net::tc
   template <typename Callback>
   bool get_session(uint64_t session_id, Callback callback) const {
     auto iter = sessions_.find(session_id);
-    if (iter == std::end(sessions_))
+    if (iter == std::end(sessions_)) {
       return false;
+    }
     callback(*(*iter).second);
     return true;
   }
 
   template <typename Callback>
   void get_all_sessions(Callback callback) const {
-    for (auto &[session_id, session] : sessions_)
+    for (auto &[session_id, session] : sessions_) {
       callback(*session);
+    }
   }
 
  protected:

@@ -43,12 +43,14 @@ Mapping::Mapping(
 }
 
 bool Mapping::add(std::string_view const &exchange, std::string_view const &symbol) {
-  if (exchange_ != exchange)
+  if (exchange_ != exchange) {
     return false;
+  }
   // debug
   auto res = processed_.emplace(symbol);
-  if (!res.second)
+  if (!res.second) {
     log::fatal(R"(Unexpected: symbol="{}")"sv, symbol);
+  }
   // regex matching
   auto result = false;
   // source
@@ -91,8 +93,9 @@ bool Mapping::add(std::string_view const &exchange, std::string_view const &symb
 void Mapping::add_source(std::string_view const &key, std::string_view const &symbol) {
   // log::info(R"(DEBUG: source=("{}" --> "{}"))"sv, key, symbol);
   auto res = source_.emplace(key, symbol);
-  if (!res.second)
+  if (!res.second) {
     log::fatal(R"(Multiple source mappings key="{}", symbol=(new="{}", have="{}"))"sv, key, symbol, (*res.first).second);
+  }
   auto iter = target_.find(key);
   if (iter != std::end(target_)) {
     auto &outbound = outbound_[symbol];
@@ -109,8 +112,9 @@ void Mapping::add_target(std::string_view const &key, std::string_view const &sy
   // log::info(R"(DEBUG: target=("{}" --> "{}"))"sv, key, symbol);
   auto &target = target_[key];
   auto res = target.emplace(symbol);
-  if (!res.second)
+  if (!res.second) {
     log::fatal(R"("Multiple insertions key="{}", symbol="{}")"sv, key, symbol);
+  }
   auto iter = source_.find(key);
   if (iter != std::end(source_)) {
     auto &source = (*iter).second;

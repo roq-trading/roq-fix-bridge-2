@@ -22,8 +22,9 @@ namespace fix_bridge {
 
 namespace {
 auto get_order_cancel_policy(auto &settings) {
-  if (settings.oms.cancel_on_disconnect)
+  if (settings.oms.cancel_on_disconnect) {
     return OrderCancelPolicy::BY_ACCOUNT;
+  }
   return OrderCancelPolicy::UNDEFINED;
 }
 
@@ -35,16 +36,18 @@ auto create_table(auto &settings) {
 }
 
 void check_empty(auto &node) {
-  if (!node.is_table())
+  if (!node.is_table()) {
     return;
+  }
   auto &table = *node.as_table();
   auto error = false;
   for (auto &[key, value] : table) {
     roq::log::warn(R"(key="{}")"sv, static_cast<std::string_view>(key));
     error = true;
   }
-  if (error)
+  if (error) {
     roq::log::fatal("Unexpected"sv);
+  }
 }
 
 template <typename Callback>
@@ -55,8 +58,9 @@ bool find_and_remove(auto &node, std::string_view const &key, Callback callback)
   }
   auto &table = *node.as_table();
   auto iter = table.find(key);
-  if (iter == table.end())
+  if (iter == table.end()) {
     return false;
+  }
   callback((*iter).second);
   table.erase(iter);
   return true;
@@ -65,24 +69,28 @@ bool find_and_remove(auto &node, std::string_view const &key, Callback callback)
 template <typename R>
 R get(auto &node, std::string_view const &key) {
   using result_type = std::remove_cvref<R>::type;
-  if (!node.is_table())
+  if (!node.is_table()) {
     throw RuntimeError{"Unexpected: node is not a table"sv};
+  }
   auto &table = *node.as_table();
   auto iter = table.find(key);
-  if (iter == table.end())
+  if (iter == table.end()) {
     throw RuntimeError{R"(Unexpected: did not find key="{}")"sv, key};
+  }
   return (*iter).second.template value<result_type>().value();
 }
 
 template <typename R>
 R get_and_remove(auto &node, std::string_view const &key) {
   using result_type = std::remove_cvref<R>::type;
-  if (!node.is_table())
+  if (!node.is_table()) {
     throw RuntimeError{"Unexpected: node is not a table"sv};
+  }
   auto &table = *node.as_table();
   auto iter = table.find(key);
-  if (iter == table.end())
+  if (iter == table.end()) {
     throw RuntimeError{R"(Unexpected: did not find key="{}")"sv, key};
+  }
   result_type result = (*iter).second.template value<result_type>().value();
   table.erase(iter);
   return result;
@@ -91,12 +99,14 @@ R get_and_remove(auto &node, std::string_view const &key) {
 template <typename R>
 R maybe_get_and_remove(auto &node, std::string_view const &key) {
   using result_type = std::remove_cvref<R>::type;
-  if (!node.is_table())
+  if (!node.is_table()) {
     throw RuntimeError{"Unexpected: node is not a table"sv};
+  }
   auto &table = *node.as_table();
   auto iter = table.find(key);
-  if (iter == table.end())
+  if (iter == table.end()) {
     return {};
+  }
   result_type result = (*iter).second.template value<result_type>().value();
   table.erase(iter);
   return result;
@@ -171,8 +181,9 @@ R parse_symbols_2(auto &settings, auto &table, auto const &key) {
   using result_type = std::remove_cvref<R>::type;
   result_type result;
   auto parse_helper = [&](auto &node) {
-    if (!settings.oms.oms_route_by_strategy)
+    if (!settings.oms.oms_route_by_strategy) {
       log::fatal("not allowed: users.symbols"sv);
+    }
     if (node.is_string()) {
       auto tmp = *node.template value<std::string>();
       result.emplace_back(tmp);
@@ -187,8 +198,9 @@ R parse_symbols_2(auto &settings, auto &table, auto const &key) {
         }
       }
     } else {
-      if (settings.oms.oms_route_by_strategy)
+      if (settings.oms.oms_route_by_strategy) {
         log::fatal("expected users.symbols to be string or list"sv);
+      }
     }
   };
   if (find_and_remove(table, key, parse_helper)) {
@@ -252,8 +264,9 @@ R parse_users(auto &settings, auto &table) {
         log::error("'users.{}.account' is not allowed when routing by strategy"sv, static_cast<std::string_view>(key));
         error = true;
       }
-      if (error)
+      if (error) {
         log::fatal("Unexpected: 'users.{}' is incomplete"sv, static_cast<std::string_view>(key));
+      }
       check_empty(table);
       // success
       result.emplace(key, std::move(user));
@@ -274,16 +287,18 @@ R parse_statistics(auto &default_values, auto &settings, auto &table) {
     auto table = node.as_table();
     for (auto &[key, node] : *table) {
       auto tmp = magic_enum::enum_cast<StatisticsType>(key);
-      if (!tmp.has_value())
+      if (!tmp.has_value()) {
         log::fatal(R"(Can't map "{}" to StatisticsType)"sv, static_cast<std::string_view>(key));
+      }
       auto type = tmp.value();
       auto &table = *node.as_table();
       auto value = get<std::string_view>(table, "fix_md_entry_type"sv);
       auto tmp2 = magic_enum::enum_cast<fix::MDEntryType>(value);
       if (tmp2.has_value()) {
         auto md_entry_type = tmp2.value();
-        if (md_entry_type == fix::MDEntryType::UNDEFINED)
+        if (md_entry_type == fix::MDEntryType::UNDEFINED) {
           log::fatal(R"(Can't map "{}" to MDEntryType)"sv, value);
+        }
         // allowed?
         switch (md_entry_type) {
           using enum fix::MDEntryType;
@@ -313,8 +328,9 @@ R parse_statistics(auto &default_values, auto &settings, auto &table) {
       if (std::size(table) != 1) {
         log::error(R"(key="{}" has unexpected fields:)"sv, static_cast<std::string_view>(key));
         for (auto &[k, _] : table) {
-          if (k != "fix_md_entry_type"sv)
+          if (k != "fix_md_entry_type"sv) {
             log::warn("  {}"sv, static_cast<std::string_view>(k));
+          }
         }
         log::fatal("Unexpected"sv);
       }
@@ -350,8 +366,9 @@ R parse_broadcast(auto &table) {
         log::error("'broadcast.{}.targets_regex' is required"sv, static_cast<std::string_view>(key));
         error = true;
       }
-      if (error)
+      if (error) {
         log::fatal("Unexpected: 'broadcast.{}' is incomplete"sv, static_cast<std::string_view>(key));
+      }
       check_empty(node);
       // success
       result.emplace(key, std::move(broadcast));
@@ -372,8 +389,9 @@ R parse_cxl_rej_reason(auto &table) {
       auto &table_2 = *node.as_table();
       for (auto &[key_2, node_2] : table_2) {
         auto value = node_2.template value<uint32_t>().value();
-        if (value < 100)
+        if (value < 100) {
           log::fatal("Unexpected: custom CxlRejReason values must be at least 100 (got {})"sv, value);
+        }
         if (key_2 == "cxl_rej_reason"sv) {
           result[error] = static_cast<fix::CxlRejReason>(value);
         } else {
@@ -392,8 +410,9 @@ void check_unique_usernames(auto &users) {
     auto &username = user.username;
     assert(!std::empty(username));
     auto res = usernames.emplace(username);
-    if (!res.second)
+    if (!res.second) {
       log::fatal(R"(Unexpected: duplicated username="{}")"sv, username);
+    }
   }
 }
 
@@ -403,8 +422,9 @@ void check_unique_accounts(auto &users) {
     auto &account = user.account;
     if (!std::empty(account)) {
       auto res = accounts.emplace(account);
-      if (!res.second)
+      if (!res.second) {
         log::fatal(R"(Unexpected: duplicated account="{}")"sv, account);
+      }
     }
   }
 }
@@ -424,8 +444,9 @@ Config::Config(Settings const &settings, auto &&table)
   log::info<1>("config={}"sv, *this);
   log::debug("config={}"sv, *this);
   check_unique_usernames(users);
-  if (!settings.oms.oms_route_by_strategy)
+  if (!settings.oms.oms_route_by_strategy) {
     check_unique_accounts(users);
+  }
 }
 
 void Config::dispatch(Handler &handler) const {

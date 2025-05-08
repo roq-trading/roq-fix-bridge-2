@@ -76,8 +76,9 @@ void Session::logout(fix::codec::Error error) {
 }
 
 void Session::operator()(io::net::tcp::Connection::Read const &) {
-  if (state_ == State::ZOMBIE)
+  if (state_ == State::ZOMBIE) {
     return;
+  }
   buffer_.append(*connection_);
   auto buffer = buffer_.data();
   try {
@@ -93,13 +94,15 @@ void Session::operator()(io::net::tcp::Connection::Read const &) {
     auto logger = [&](auto &message) { shared_.fix_log.received<1>(session_id_, message); };
     while (!std::empty(buffer)) {
       auto bytes = fix::Reader<FIX_VERSION>::dispatch(buffer, parser, logger);
-      if (bytes == 0)
+      if (bytes == 0) {
         break;
+      }
       assert(bytes <= std::size(buffer));
       total_bytes += bytes;
       buffer = buffer.subspan(bytes);
-      if (state_ == State::ZOMBIE)
+      if (state_ == State::ZOMBIE) {
         break;
+      }
     }
     buffer_.drain(total_bytes);
   } catch (SystemError &e) {
@@ -692,8 +695,9 @@ void Session::send_helper(T const &value, std::chrono::nanoseconds sending_time,
   } else {
     log::warn("HERE"sv);
   }
-  if (origin_create_time.count() == 0)
+  if (origin_create_time.count() == 0) {
     return;
+  }
   auto now = clock::get_system();
   auto latency = now - origin_create_time;
   shared_.latency.end_to_end.update(latency.count());
@@ -709,8 +713,9 @@ void Session::close() {
 void Session::make_zombie() {
   if (state_ == State::READY) {
     unsubscribe_all();
-    if (shared_.settings.oms.cancel_on_disconnect)
+    if (shared_.settings.oms.cancel_on_disconnect) {
       cancel_all_orders();
+    }
     shared_.remove_all_routes(session_id_);
   }
   if (utils::update(state_, State::ZOMBIE)) {
@@ -753,8 +758,9 @@ void Session::unsubscribe_all() {
 
 // note! doesn't work with route-by-strategy
 void Session::cancel_all_orders() {
-  if (std::empty(account_))
+  if (std::empty(account_)) {
     return;
+  }
   log::warn(R"({} *** REQUESTING ALL ORDERS TO BE CANCELLED (account="{}") ***)"sv, prefix_, account_);
   auto cancel_all_orders = CancelAllOrders{
       .account = account_,

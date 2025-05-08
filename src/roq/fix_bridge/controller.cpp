@@ -14,14 +14,17 @@ namespace fix_bridge {
 namespace {
 auto create_bridge(auto &handler, auto &settings, auto &config) {
   std::vector<std::pair<StatisticsType, double>> default_values;
-  for (auto &item : config.default_values)
+  for (auto &item : config.default_values) {
     default_values.emplace_back(item);
+  }
   std::vector<std::pair<StatisticsType, fix::MDEntryType>> statistics;
-  for (auto &item : config.statistics)
+  for (auto &item : config.statistics) {
     statistics.emplace_back(item);
+  }
   std::vector<std::pair<Error, fix::CxlRejReason>> cxl_rej_reason_mapping;
-  for (auto &item : config.cxl_rej_reason)
+  for (auto &item : config.cxl_rej_reason) {
     cxl_rej_reason_mapping.emplace_back(item);
+  }
   auto options = fix::bridge::Manager::Options{
       // session
       .comp_id = settings.fix.fix_comp_id,
@@ -225,13 +228,16 @@ void Controller::operator()(metrics::Writer &writer) const {
 
 std::pair<fix::codec::Error, std::string_view> Controller::operator()(fix::bridge::Manager::Credentials const &credentials) {
   auto iter = username_to_user_.find(credentials.username);
-  if (iter == std::end(username_to_user_))
+  if (iter == std::end(username_to_user_)) {
     return {fix::codec::Error::INVALID_USERNAME, {}};
+  }
   auto &user = (*iter).second;
-  if (credentials.component != user.component)
+  if (credentials.component != user.component) {
     return {fix::codec::Error::INVALID_COMPONENT, {}};
-  if (!crypto_.validate(credentials.password, user.password, credentials.raw_data))
+  }
+  if (!crypto_.validate(credentials.password, user.password, credentials.raw_data)) {
     return {fix::codec::Error::INVALID_PASSWORD, {}};
+  }
   return {{}, user.account};
 }
 

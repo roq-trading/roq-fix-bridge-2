@@ -47,8 +47,9 @@ auto extract_username_to_user(auto &settings, auto &config) {
 
 auto extract_broadcast_mappings(auto &config) {
   std::vector<tools::Mapping> result;
-  for (auto &[name, broadcast] : config.broadcast)
+  for (auto &[name, broadcast] : config.broadcast) {
     result.emplace_back(name, broadcast.exchange, broadcast.source_regex, broadcast.targets_regex);
+  }
   return result;
 }
 
@@ -118,11 +119,13 @@ std::tuple<std::string_view, User const *, std::string> Shared::session_logon_he
   log::info(R"(Session: ADD session_id={} (component="{}", username="{}"))"sv, session_id, component, username);
   // XXX TODO validate component
   auto iter = username_to_user_.find(username);
-  if (iter == std::end(username_to_user_))
+  if (iter == std::end(username_to_user_)) {
     return {{}, {}, fmt::format(R"(Unknown username="{}")"sv, username)};
+  }
   auto &user = (*iter).second;
-  if (std::empty(user.account))
+  if (std::empty(user.account)) {
     return {};
+  }
   if (settings.test.block_client_on_not_ready) {
     auto ready = true;
     for (auto &item : oms_status_) {
@@ -132,18 +135,23 @@ std::tuple<std::string_view, User const *, std::string> Shared::session_logon_he
         ready = false;
       }
     }
-    if (!ready)
+    if (!ready) {
       return {{}, {}, fmt::format(R"(Not ready: account="{}")"sv, user.account)};
+    }
   }
-  if (component != user.component)
+  if (component != user.component) {
     return {{}, {}, "Invalid component"s};
-  if (!crypto_.validate(password, user.password, raw_data))
+  }
+  if (!crypto_.validate(password, user.password, raw_data)) {
     return {{}, {}, "Invalid password"s};
-  if (!locked_usernames_.emplace(username).second)
+  }
+  if (!locked_usernames_.emplace(username).second) {
     return {user.account, &user, fmt::format(R"(Username "{}" already connected)"sv, username)};
+  }
   auto &sessions = account_to_sessions_[user.account];
-  if (!settings.oms.oms_route_by_strategy && !std::empty(sessions))
+  if (!settings.oms.oms_route_by_strategy && !std::empty(sessions)) {
     return {user.account, {}, fmt::format(R"(Account "{}" already connected)"sv, user.account)};
+  }
   sessions.emplace(session_id);
   session_to_username_and_account_.try_emplace(session_id, username, user.account);
   assert(username_to_session_.find(username) == std::end(username_to_session_));
@@ -198,10 +206,12 @@ void Shared::operator()(Event<Disconnected> const &event) {
 
 void Shared::operator()(Event<StreamStatus> const &event) {
   auto &[message_info, stream_status] = event;
-  if (std::empty(stream_status.account))
+  if (std::empty(stream_status.account)) {
     return;
-  if (!stream_status.supports.has(SupportType::ORDER))
+  }
+  if (!stream_status.supports.has(SupportType::ORDER)) {
     return;
+  }
   auto &current = oms_status_[message_info.source][stream_status.account];
   auto previous = std::exchange(current, stream_status.connection_status);
   if (current != previous) {
@@ -222,8 +232,9 @@ void Shared::operator()(Event<GatewaySettings> const &event) {
 // market
 
 void Shared::update_broadcast_table(std::string_view const &exchange, std::string_view const &symbol) {
-  for (auto &mapping : broadcast_mappings_)
+  for (auto &mapping : broadcast_mappings_) {
     mapping.add(exchange, symbol);
+  }
 }
 
 // routing v2
@@ -242,8 +253,9 @@ bool Shared::add_route(uint64_t session_id, uint32_t strategy_id) {
 
 bool Shared::remove_route(uint64_t session_id, uint32_t strategy_id) {
   auto iter = strategy_id_to_session_id_.find(strategy_id);
-  if (iter == std::end(strategy_id_to_session_id_) || (*iter).second != session_id)
+  if (iter == std::end(strategy_id_to_session_id_) || (*iter).second != session_id) {
     return false;
+  }
   log::info(R"(DEBUG ROUTE REMOVE strategy_id={} <==> session_id={})"sv, strategy_id, session_id);
   session_id_to_strategy_id_[session_id].erase(strategy_id);
   strategy_id_to_session_id_.erase(iter);
@@ -252,8 +264,9 @@ bool Shared::remove_route(uint64_t session_id, uint32_t strategy_id) {
 
 void Shared::remove_all_routes(uint64_t session_id) {
   auto iter = session_id_to_strategy_id_.find(session_id);
-  if (iter == std::end(session_id_to_strategy_id_))
+  if (iter == std::end(session_id_to_strategy_id_)) {
     return;
+  }
   for (auto strategy_id : (*iter).second) {
     log::info(R"(DEBUG: ROUTE REMOVE strategy_id={} <==> session_id={})"sv, strategy_id, session_id);
     strategy_id_to_session_id_.erase(strategy_id);

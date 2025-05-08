@@ -9,8 +9,9 @@ namespace fix_bridge {
 
 namespace {
 auto create_file(auto &path) -> std::unique_ptr<io::fs::File> {
-  if (std::empty(path))
+  if (std::empty(path)) {
     return {};
+  }
   auto flags = Mask{
       io::fs::Flags::WRITE_ONLY,
       io::fs::Flags::CREATE,

@@ -60,10 +60,12 @@ struct Shared final {
 
   template <typename Callback>
   bool get_sources(Callback callback) {
-    if (std::empty(gateways_))
+    if (std::empty(gateways_)) {
       return false;
-    for (auto const &[source_name, tmp] : gateways_)
+    }
+    for (auto const &[source_name, tmp] : gateways_) {
       callback(tmp.first, source_name, tmp.second);
+    }
     return true;
   }
 
@@ -79,13 +81,14 @@ struct Shared final {
   template <typename Callback>
   bool broadcast(std::string_view const &exchange, std::string_view const &symbol, Callback callback) {
     auto result = false;
-    for (auto &mapping : broadcast_mappings_)
+    for (auto &mapping : broadcast_mappings_) {
       mapping.dispatch(exchange, symbol, [&](auto &exchange, auto &symbol) {
         get_market(exchange, symbol, [&](auto &market) {
           result = true;
           callback(market);
         });
       });
+    }
     return result;
   }
 

@@ -28,11 +28,13 @@ struct Mapping final {
   template <typename Callback>
   bool dispatch([[maybe_unused]] std::string_view const &exchange, std::string_view const &symbol, Callback &&callback) const {
     auto iter = outbound_.find(symbol);
-    if (iter == std::end(outbound_))
+    if (iter == std::end(outbound_)) {
       return false;
+    }
     auto &symbols = (*iter).second;
-    for (auto &symbol_ : symbols)
+    for (auto &symbol_ : symbols) {
       callback(exchange_, symbol_);
+    }
     return true;
   }
 
