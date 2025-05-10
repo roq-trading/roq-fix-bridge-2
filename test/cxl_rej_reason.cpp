@@ -9,7 +9,7 @@
 #include "roq/fix/codec/encoder.hpp"
 
 using namespace std::literals;
-using namespace std::chrono_literals;  // NOLINT
+using namespace std::chrono_literals;
 
 using namespace Catch::literals;
 
