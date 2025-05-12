@@ -60,7 +60,7 @@ auto create_bridge(auto &handler, auto &settings, auto &config) {
 
 template <typename R>
 auto create_username_to_user(auto &settings, auto &config) {
-  using result_type = std::remove_cvref<R>::type;
+  using result_type = std::remove_cvref_t<R>;
   result_type result;
   utils::unordered_map<std::string, std::string> account_to_username;
   for (auto &[_, user] : config.users) {

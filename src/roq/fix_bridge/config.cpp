@@ -68,7 +68,7 @@ bool find_and_remove(auto &node, std::string_view const &key, Callback callback)
 
 template <typename R>
 R get(auto &node, std::string_view const &key) {
-  using result_type = std::remove_cvref<R>::type;
+  using result_type = std::remove_cvref_t<R>;
   if (!node.is_table()) {
     throw RuntimeError{"Unexpected: node is not a table"sv};
   }
@@ -82,7 +82,7 @@ R get(auto &node, std::string_view const &key) {
 
 template <typename R>
 R get_and_remove(auto &node, std::string_view const &key) {
-  using result_type = std::remove_cvref<R>::type;
+  using result_type = std::remove_cvref_t<R>;
   if (!node.is_table()) {
     throw RuntimeError{"Unexpected: node is not a table"sv};
   }
@@ -98,7 +98,7 @@ R get_and_remove(auto &node, std::string_view const &key) {
 
 template <typename R>
 R maybe_get_and_remove(auto &node, std::string_view const &key) {
-  using result_type = std::remove_cvref<R>::type;
+  using result_type = std::remove_cvref_t<R>;
   if (!node.is_table()) {
     throw RuntimeError{"Unexpected: node is not a table"sv};
   }
@@ -114,7 +114,7 @@ R maybe_get_and_remove(auto &node, std::string_view const &key) {
 
 template <typename R>
 R parse_symbols(auto &table) {
-  using result_type = std::remove_cvref<R>::type;
+  using result_type = std::remove_cvref_t<R>;
   result_type result;
   auto iter = table.find("symbols"sv);
   if (iter == std::end(table)) {
@@ -178,7 +178,7 @@ R parse_symbols(auto &table) {
 
 template <typename R>
 R parse_symbols_2(auto &settings, auto &table, auto const &key) {
-  using result_type = std::remove_cvref<R>::type;
+  using result_type = std::remove_cvref_t<R>;
   result_type result;
   auto parse_helper = [&](auto &node) {
     if (!settings.oms.oms_route_by_strategy) {
@@ -211,7 +211,7 @@ R parse_symbols_2(auto &settings, auto &table, auto const &key) {
 
 template <typename R>
 R parse_symbols_3(auto &table, auto const &key) {
-  using result_type = std::remove_cvref<R>::type;
+  using result_type = std::remove_cvref_t<R>;
   result_type result;
   auto parse_helper = [&](auto &node) {
     if (node.is_string()) {
@@ -239,7 +239,7 @@ R parse_symbols_3(auto &table, auto const &key) {
 
 template <typename R>
 R parse_users(auto &settings, auto &table) {
-  using result_type = std::remove_cvref<R>::type;
+  using result_type = std::remove_cvref_t<R>;
   result_type result;
   auto parse_helper = [&](auto &node) {
     auto table = node.as_table();
@@ -281,7 +281,7 @@ R parse_users(auto &settings, auto &table) {
 
 template <typename R>
 R parse_statistics(auto &default_values, auto &settings, auto &table) {
-  using result_type = std::remove_cvref<R>::type;
+  using result_type = std::remove_cvref_t<R>;
   result_type result;
   auto parse_helper = [&](auto &node) {
     auto table = node.as_table();
@@ -342,7 +342,7 @@ R parse_statistics(auto &default_values, auto &settings, auto &table) {
 
 template <typename R>
 R parse_broadcast(auto &table) {
-  using result_type = std::remove_cvref<R>::type;
+  using result_type = std::remove_cvref_t<R>;
   result_type result;
   auto parse_helper = [&](auto &node) {
     auto table = node.as_table();
@@ -380,7 +380,7 @@ R parse_broadcast(auto &table) {
 
 template <typename R>
 R parse_cxl_rej_reason(auto &table) {
-  using result_type = std::remove_cvref<R>::type;
+  using result_type = std::remove_cvref_t<R>;
   result_type result;
   auto parse_helper = [&](auto &node) {
     auto table = node.as_table();
