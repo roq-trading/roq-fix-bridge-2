@@ -30,14 +30,14 @@ auto create_file(auto &path) -> std::unique_ptr<io::fs::File> {
 
 FIXLog::FIXLog(Settings const &settings) : settings_{settings}, raw_file_{create_file(settings.fix.fix_log_path)} {
   if (static_cast<bool>(raw_file_)) {
-    auto fd = (*raw_file_.get()).fd();
+    auto fd = (*raw_file_).fd();
     file_ = ::fdopen(fd, "w");
   }
 }
 
 FIXLog::~FIXLog() {
   try {
-    if (file_) {
+    if (file_ != nullptr) {
       ::fflush(file_);
       ::fclose(file_);
     }

@@ -65,7 +65,7 @@ bool Crypto::validate(std::string_view const &password, std::string_view const &
     }
     case HMAC_SHA256_TS: {
       auto pos = raw_data.find_first_of('.');
-      if (pos == raw_data.npos) {
+      if (pos == std::string_view::npos) {
         log::warn(R"(DEBUG no period in raw_data="{}")"sv, raw_data);
         return false;
       }

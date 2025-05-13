@@ -59,12 +59,12 @@ struct create_metrics final : public utils::metrics::Factory {
 
 auto create_internal_latency(auto &settings) {
   auto labels = fmt::format(R"(source="{}")"sv, settings.app.name);
-  return utils::metrics::internal_latency_t{labels.c_str()};
+  return utils::metrics::internal_latency_t{labels};
 }
 
 auto create_external_latency(auto &settings, auto const &function) {
   auto labels = fmt::format(R"(source="{}", function="{}")"sv, settings.app.name, function);
-  return utils::metrics::external_latency_t{labels.c_str()};
+  return utils::metrics::external_latency_t{labels};
 }
 }  // namespace
 
@@ -246,9 +246,8 @@ bool Shared::add_route(uint64_t session_id, uint32_t strategy_id) {
     session_id_to_strategy_id_[session_id].emplace(strategy_id);
     log::info(R"(DEBUG: ROUTE ADD strategy_id={} <==> session_id={})"sv, strategy_id, session_id);
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 
 bool Shared::remove_route(uint64_t session_id, uint32_t strategy_id) {

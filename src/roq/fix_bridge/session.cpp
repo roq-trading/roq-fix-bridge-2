@@ -436,7 +436,7 @@ void Session::operator()(Trace<fix::codec::UserRequest> const &event, fix::Heade
     // FIXME reject
   }
   auto strategy_id = get_strategy_id_helper(user_request.username);
-  if (!strategy_id) {
+  if (strategy_id == 0) {
     // FIXME reject
   }
   switch (user_request.user_request_type) {
