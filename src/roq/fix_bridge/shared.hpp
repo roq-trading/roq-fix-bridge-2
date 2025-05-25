@@ -107,8 +107,8 @@ struct Shared final {
       uint64_t session_id,
       std::string_view const &component,
       std::string_view const &username,
-      std::string_view const &raw_data,
-      std::string_view const &password);
+      std::string_view const &password,
+      std::string_view const &raw_data);
 
  public:
   Settings const &settings;

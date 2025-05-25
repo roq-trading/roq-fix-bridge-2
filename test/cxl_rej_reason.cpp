@@ -56,7 +56,7 @@ TEST_CASE("order_cancel_reject", "[order_cancel_reject]") {
         .working_indicator = true,
         .account = "A1"sv,
         .cxl_rej_response_to = fix::CxlRejResponseTo::ORDER_CANCEL_REPLACE_REQUEST,
-        .cxl_rej_reason = static_cast<fix::CxlRejReason>(1139),  // note!
+        .cxl_rej_reason = static_cast<fix::CxlRejReason>(1139),  // NOLINT(clang-analyzer-optin.core.EnumCastOutOfRange)
         .text = "some message"sv,
     };
     auto encoder = fix::codec::Encoder::create();

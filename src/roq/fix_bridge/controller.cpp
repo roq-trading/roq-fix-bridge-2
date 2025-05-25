@@ -130,7 +130,7 @@ void Controller::operator()(Event<Control> const &event) {
     }
     std::abort();
   }();
-  if (control.strategy_id) {
+  if (control.strategy_id != 0) {
     // XXX FIXME TODO check for legs update
     auto strategy_update = StrategyUpdate{
         .user = {},  // note! client library will set this
