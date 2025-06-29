@@ -365,7 +365,7 @@ void Controller::operator()(Trace<fix::codec::QuoteStatusReport> const &event, u
 }
 
 void Controller::operator()(Trace<fix::codec::ExecutionReport> const &event) {
-  // XXX FIXME TODO HANS implement
+  session_manager_.get_all_sessions([&](auto &session) { session(event); });
 }
 
 // tools
