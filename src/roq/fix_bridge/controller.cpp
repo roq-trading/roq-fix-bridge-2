@@ -229,13 +229,16 @@ void Controller::operator()(metrics::Writer &writer) const {
 std::pair<fix::codec::Error, std::string_view> Controller::operator()(fix::bridge::Manager::Credentials const &credentials) {
   auto iter = username_to_user_.find(credentials.username);
   if (iter == std::end(username_to_user_)) {
+    log::error(R"(Unknown username "{}")"sv, credentials.username);
     return {fix::codec::Error::INVALID_USERNAME, {}};
   }
   auto &user = (*iter).second;
   if (credentials.component != user.component) {
+    log::error(R"(Unexpected component "{}", expected "{}")"sv, credentials.component, user.component);
     return {fix::codec::Error::INVALID_COMPONENT, {}};
   }
   if (!crypto_.validate(credentials.password, user.password, credentials.raw_data)) {
+    log::error("Unexpected password");
     return {fix::codec::Error::INVALID_PASSWORD, {}};
   }
   return {{}, user.account};

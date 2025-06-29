@@ -107,6 +107,9 @@ void SessionManager::operator()(io::net::tcp::Connection::Factory &factory, io::
 void SessionManager::helper(io::net::tcp::Connection::Factory &factory, uint64_t session_id) {
   auto session = std::make_unique<Session>(*this, session_id, factory, shared_);
   add_session(std::move(session));
+  TraceInfo trace_info;
+  fix::bridge::Manager::Connected connected;
+  create_trace_and_dispatch(shared_.bridge, trace_info, connected, session_id);
 }
 
 // Session::Handler

@@ -122,11 +122,17 @@ void Session::operator()(io::net::tcp::Connection::Read const &) {
 void Session::operator()(io::net::tcp::Connection::Disconnected const &) {
   make_zombie();
   TraceInfo trace_info;
-  auto disconnected = fix::bridge::Manager::Disconnected{};
+  fix::bridge::Manager::Disconnected disconnected;
   create_trace_and_dispatch(shared_.bridge, trace_info, disconnected, session_id_);
 }
 
 void Session::check(fix::Header const &header) {
+  assert(!std::empty(header.sender_comp_id));
+  if (std::empty(comp_id_)) {
+    comp_id_ = header.sender_comp_id;
+  } else {
+    assert(header.sender_comp_id == comp_id_);
+  }
   auto current = header.msg_seq_num;
   auto expected = inbound_.msg_seq_num + 1;
   if (current != expected) [[unlikely]] {
@@ -645,7 +651,7 @@ void Session::send_and_close(T const &value) {
 
 template <std::size_t level, typename T>
 void Session::send(T const &value) {
-  assert(state_ == State::READY);
+  // assert(state_ == State::READY);
   auto sending_time = clock::get_realtime();
   send_helper<level>(value, sending_time);
 }
@@ -661,7 +667,7 @@ void Session::send_maybe_override_sending_time(T const &value, std::chrono::nano
 
 template <std::size_t level, typename T>
 void Session::send(T const &value, MessageInfo const &message_info) {
-  assert(state_ == State::READY);
+  // assert(state_ == State::READY);
   auto sending_time = clock::get_realtime();
   send_helper<level>(value, sending_time, message_info.origin_create_time);
 }

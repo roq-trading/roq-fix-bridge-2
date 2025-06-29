@@ -20,21 +20,21 @@
 [users]
 
   [users.MD1]
-  component="roq-fix-client-test"
+  component="fix-client"
   username="tbmd1"
 
   [users.MD2]
-  component="roq-fix-client-test"
+  component="fix-client"
   username="tbmd2"
 
   [users.OM1]
-  component="roq-fix-client-test"
+  component="fix-client"
   username="trader"
   password="secret"
   account="A1"
 
   [users.OM2]
-  component="roq-fix-client-test"
+  component="fix-client"
   username="tbom2"
   password="secret"
   account="A2"

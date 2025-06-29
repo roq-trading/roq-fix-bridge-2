@@ -32,4 +32,5 @@ $PREFIX "./roq-fix-bridge" \
   --client_listen_address $HOME/run/fix-bridge.sock \
   --init_missing_md_entry_type_to_zero=true \
   --oms_route_by_strategy=false \
+  --fix_comp_id "fix-bridge" \
 	$@
