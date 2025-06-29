@@ -338,77 +338,14 @@ void Session::operator()(Trace<fix::codec::TestRequest> const &event, fix::Heade
 
 void Session::operator()(Trace<fix::codec::ResendRequest> const &event, fix::Header const &header) {
   dispatch(event, header);
-  //
-  dispatch(event, header);
-  auto &[trace_info, resend_request] = event;
-  log::info<1>("{} resend_request={}"sv, prefix_, resend_request);
-  switch (state_) {
-    using enum State;
-    case WAITING_LOGON: {
-      auto const error = fix::codec::Error::NO_LOGON;
-      auto response = fix::codec::Reject{
-          .ref_seq_num = header.msg_seq_num,
-          .text = get_text(error),
-          .ref_tag_id = {},
-          .ref_msg_type = header.msg_type,
-          .session_reject_reason = fix::SessionRejectReason::OTHER,
-      };
-      send_and_close<2>(response);
-      break;
-    }
-    case READY: {
-      auto const error = fix::codec::Error::UNSUPPORTED_MSG_TYPE;
-      auto response = fix::codec::BusinessMessageReject{
-          .ref_seq_num = header.msg_seq_num,
-          .ref_msg_type = header.msg_type,
-          .business_reject_ref_id = {},
-          .business_reject_reason = fix::BusinessRejectReason::UNSUPPORTED_MESSAGE_TYPE,
-          .text = get_text(error),
-      };
-      send<2>(response);
-      break;
-    }
-    case ZOMBIE:
-      assert(false);
-      break;
-  }
 }
 
 void Session::operator()(Trace<fix::codec::Reject> const &event, fix::Header const &header) {
   dispatch(event, header);
-  //
-  auto &[trace_info, reject] = event;
-  log::warn("{} reject={}"sv, prefix_, reject);
-  close();
 }
 
 void Session::operator()(Trace<fix::codec::Heartbeat> const &event, fix::Header const &header) {
   dispatch(event, header);
-  //
-  auto &[trace_info, heartbeat] = event;
-  log::info<1>("{} heartbeat={}"sv, prefix_, heartbeat);
-  switch (state_) {
-    using enum State;
-    case WAITING_LOGON: {
-      auto const error = fix::codec::Error::NO_LOGON;
-      auto response = fix::codec::Reject{
-          .ref_seq_num = header.msg_seq_num,
-          .text = get_text(error),
-          .ref_tag_id = {},
-          .ref_msg_type = header.msg_type,
-          .session_reject_reason = fix::SessionRejectReason::OTHER,
-      };
-      send<2>(response);
-      break;
-    }
-    case READY: {
-      waiting_for_heartbeat_ = false;
-      break;
-    }
-    case ZOMBIE:
-      assert(false);
-      break;
-  }
 }
 
 void Session::operator()(Trace<fix::codec::TradingSessionStatusRequest> const &event, fix::Header const &header) {
