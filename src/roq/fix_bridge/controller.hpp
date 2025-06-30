@@ -65,7 +65,7 @@ struct Controller final : public client::Handler, public fix::bridge::Manager::H
 
   // bridge
 
-  std::pair<fix::codec::Error, std::string_view> operator()(fix::bridge::Manager::Credentials const &) override;
+  std::pair<fix::codec::Error, uint32_t> operator()(fix::bridge::Manager::Credentials const &) override;
 
   void operator()(CreateOrder const &, uint8_t source) override;
   void operator()(ModifyOrder const &, uint8_t source) override;

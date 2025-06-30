@@ -141,11 +141,6 @@ struct Shared final {
   // sessions
   // - config
   utils::unordered_map<std::string, User> const username_to_user_;
-  // - username
-  utils::unordered_map<uint64_t, std::pair<std::string, std::string>> session_to_username_and_account_;
-  utils::unordered_map<std::string, uint64_t> username_to_session_;
-  utils::unordered_set<std::string> locked_usernames_;
-  utils::unordered_map<std::string, utils::unordered_set<uint64_t>> account_to_sessions_;
   // gateways
   utils::unordered_map<std::string, std::pair<uint8_t, bool>> gateways_;
   std::vector<utils::unordered_map<std::string, ConnectionStatus>> oms_status_;

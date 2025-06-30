@@ -1,3 +1,26 @@
+
+
+drop 1:1 account
+----------------
+
+config has list of account regex's
+shared doesn't lock user (allow multiple logon)
+check `req_id` mappings get cleaned up on completion and disconnect
+check all `req_id` mappings live inside the roq-fix library
+what should we now do when gateway disconnects or for loss of OM connectivity?
+
+
+
+
+
+
+
+
+
+
+
+
+
 MarketDataRequest
 - note! MarketDataRequestReject if symbol doesn't exist at this time
 - what is the expected response to unsubscribe?

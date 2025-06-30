@@ -117,7 +117,6 @@ std::tuple<std::string_view, User const *, std::string> Shared::session_logon_he
     std::string_view const &password,
     std::string_view const &raw_data) {
   log::info(R"(Session: ADD session_id={} (component="{}", username="{}"))"sv, session_id, component, username);
-  // XXX TODO validate component
   auto iter = username_to_user_.find(username);
   if (iter == std::end(username_to_user_)) {
     return {{}, {}, fmt::format(R"(Unknown username="{}")"sv, username)};
@@ -145,34 +144,11 @@ std::tuple<std::string_view, User const *, std::string> Shared::session_logon_he
   if (!crypto_.validate(password, user.password, raw_data)) {
     return {{}, {}, "Invalid password"s};
   }
-  if (!locked_usernames_.emplace(username).second) {
-    return {user.account, &user, fmt::format(R"(Username "{}" already connected)"sv, username)};
-  }
-  auto &sessions = account_to_sessions_[user.account];
-  if (!settings.oms.oms_route_by_strategy && !std::empty(sessions)) {
-    return {user.account, {}, fmt::format(R"(Account "{}" already connected)"sv, user.account)};
-  }
-  sessions.emplace(session_id);
-  session_to_username_and_account_.try_emplace(session_id, username, user.account);
-  assert(username_to_session_.find(username) == std::end(username_to_session_));
-  username_to_session_.emplace(username, session_id);
   return {user.account, &user, {}};
 }
 
 void Shared::session_logout(uint64_t session_id) {
   log::info("Session: REMOVE session_id={}"sv, session_id);
-  auto iter = session_to_username_and_account_.find(session_id);
-  if (iter != std::end(session_to_username_and_account_)) {
-    auto &[username, account] = (*iter).second;
-    [[maybe_unused]] auto count = locked_usernames_.erase(username);
-    assert(count != 0);
-    log::info(R"(User username="{}" has been RELEASED)"sv, username);
-    assert(username_to_session_.find(username) != std::end(username_to_session_));
-    username_to_session_.erase(username);
-    auto &sessions = account_to_sessions_[account];
-    sessions.erase(session_id);
-    session_to_username_and_account_.erase(iter);
-  }
 }
 
 // sources

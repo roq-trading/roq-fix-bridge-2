@@ -226,7 +226,7 @@ void Controller::operator()(metrics::Writer &writer) const {
 
 // bridge
 
-std::pair<fix::codec::Error, std::string_view> Controller::operator()(fix::bridge::Manager::Credentials const &credentials) {
+std::pair<fix::codec::Error, uint32_t> Controller::operator()(fix::bridge::Manager::Credentials const &credentials) {
   auto iter = username_to_user_.find(credentials.username);
   if (iter == std::end(username_to_user_)) {
     log::error(R"(Unknown username "{}")"sv, credentials.username);
@@ -241,7 +241,7 @@ std::pair<fix::codec::Error, std::string_view> Controller::operator()(fix::bridg
     log::error("Unexpected password");
     return {fix::codec::Error::INVALID_PASSWORD, {}};
   }
-  return {{}, user.account};
+  return {{}, user.strategy_id};
 }
 
 void Controller::operator()(CreateOrder const &create_order, uint8_t source) {
@@ -329,6 +329,7 @@ void Controller::operator()(Trace<fix::codec::MarketDataIncrementalRefresh> cons
 }
 
 void Controller::operator()(Trace<fix::codec::ExecutionReport> const &event, uint64_t session_id) {
+  log::warn("execution_report={}, session_id={}"sv, event.value, session_id);
   dispatch(event, session_id);
 }
 
@@ -365,6 +366,12 @@ void Controller::operator()(Trace<fix::codec::QuoteStatusReport> const &event, u
 }
 
 void Controller::operator()(Trace<fix::codec::ExecutionReport> const &event) {
+  log::warn("execution_report={}"sv, event.value);
+  if (shared_.settings.oms.oms_route_by_strategy) {
+    // XXX FIXME TODO no_party_ids => strategy_id => session(s)
+  } else {
+    // XXX FIXME TODO account => regex by user => session(s)
+  }
   session_manager_.get_all_sessions([&](auto &session) { session(event); });
 }
 

@@ -177,6 +177,36 @@ R parse_symbols(auto &table) {
 }
 
 template <typename R>
+R parse_accounts_2(auto &settings, auto &table, auto const &key) {
+  using result_type = std::remove_cvref_t<R>;
+  result_type result;
+  auto parse_helper = [&](auto &node) {
+    if (node.is_string()) {
+      auto tmp = *node.template value<std::string>();
+      result.emplace_back(tmp);
+    } else if (node.is_array()) {
+      auto regex_list = node.as_array();
+      for (auto &iter_2 : *regex_list) {
+        if (iter_2.is_string()) {
+          auto tmp = *iter_2.template value<std::string>();
+          result.emplace_back(tmp);
+        } else {
+          log::fatal("expected string"sv);
+        }
+      }
+    } else {
+      if (settings.oms.oms_route_by_strategy) {
+        log::fatal("expected users.accounts to be string or list"sv);
+      }
+    }
+  };
+  if (find_and_remove(table, key, parse_helper)) {
+  } else {
+  }
+  return result;
+}
+
+template <typename R>
 R parse_symbols_2(auto &settings, auto &table, auto const &key) {
   using result_type = std::remove_cvref_t<R>;
   result_type result;
@@ -251,7 +281,9 @@ R parse_users(auto &settings, auto &table) {
           .component = get_and_remove<decltype(User::component)>(table, "component"sv),
           .username = get_and_remove<decltype(User::username)>(table, "username"sv),
           .password = maybe_get_and_remove<decltype(User::password)>(table, "password"sv),
+          .strategy_id = maybe_get_and_remove<decltype(User::strategy_id)>(table, "strategy_id"sv),
           .account = maybe_get_and_remove<decltype(User::account)>(table, "account"sv),
+          .accounts_regex = parse_accounts_2<decltype(User::accounts_regex)>(settings, table, "accounts"sv),
           .symbols_regex = parse_symbols_2<decltype(User::symbols_regex)>(settings, table, "symbols"sv),
       };
       // validate

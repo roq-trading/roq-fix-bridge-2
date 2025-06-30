@@ -31,13 +31,17 @@
   component="fix-client"
   username="trader"
   password="secret"
+  strategy_id=123
   account="A1"
+  accounts="A1"
 
   [users.OM2]
   component="fix-client"
   username="tbom2"
   password="secret"
+  strategy_id=987
   account="A2"
+  accounts=["A1","A2"]
 
 
 # override default mappings?

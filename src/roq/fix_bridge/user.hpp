@@ -16,7 +16,9 @@ struct User final {
   std::string component;
   std::string username;
   std::string password;
+  uint32_t strategy_id = {};
   std::string account;
+  std::vector<std::string> accounts_regex;
   std::vector<std::string> symbols_regex;
 };
 
@@ -38,13 +40,16 @@ struct fmt::formatter<roq::fix_bridge::User> {
         R"(component="{}", )"
         R"(username="{}", )"
         R"(password=***, )"
+        R"(strategy_id={}, )"
         R"(account="{}", )"
         R"(symbols_regex=[{}])"
         R"(}})"sv,
         value.user_id,
         value.component,
         value.username,
+        value.strategy_id,
         value.account,
+        fmt::join(value.accounts_regex, ", "sv),
         fmt::join(value.symbols_regex, ", "sv));
   }
 };
