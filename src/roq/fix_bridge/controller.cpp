@@ -329,7 +329,6 @@ void Controller::operator()(Trace<fix::codec::MarketDataIncrementalRefresh> cons
 }
 
 void Controller::operator()(Trace<fix::codec::ExecutionReport> const &event, uint64_t session_id) {
-  log::warn("execution_report={}, session_id={}"sv, event.value, session_id);
   dispatch(event, session_id);
 }
 
@@ -366,7 +365,6 @@ void Controller::operator()(Trace<fix::codec::QuoteStatusReport> const &event, u
 }
 
 void Controller::operator()(Trace<fix::codec::ExecutionReport> const &event) {
-  log::warn("execution_report={}"sv, event.value);
   if (shared_.settings.oms.oms_route_by_strategy) {
     // XXX FIXME TODO no_party_ids => strategy_id => session(s)
   } else {
