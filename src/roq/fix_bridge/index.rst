@@ -101,7 +101,7 @@ Conda
 
   .. code-block:: bash
   
-    $ cp $CONDA_PREFIX/share/roq-fix-bridge/config.toml $CONFIG_FILE_PATH
+    $ cp --flagfile $CONDA_PREFIX/share/roq-fix-bridge/config.toml $CONFIG_FILE_PATH
   
     # Then modify $CONFIG_FILE_PATH to match your specific configuration
   
