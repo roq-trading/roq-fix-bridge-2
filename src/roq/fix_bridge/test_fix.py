@@ -203,7 +203,7 @@ def trade_capture_report_request():
 if __name__ == "__main__":
     home = os.getenv("HOME")
     with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as s:
-        s.connect("{}/run/fix-bridge.sock".format(home))
+        s.connect("{}/run/fix-bridge-2.sock".format(home))
         # logon
         s.sendall(logon_request())
         response = s.recv(4096)

@@ -16,7 +16,7 @@ message("Using GIT_REPO_VERSION=${GIT_REPO_VERSION}")
 
 # project
 
-project(roq-fix-bridge VERSION ${GIT_REPO_VERSION})
+project(roq-fix-bridge-2 VERSION ${GIT_REPO_VERSION})
 
 # language
 

@@ -25,11 +25,11 @@ fi
 
 # launch
 
-$PREFIX "./roq-fix-bridge" \
+$PREFIX "./roq-fix-bridge-2" \
 	--name "$NAME" \
 	--config_file "$CONFIG_FILE" \
   --service_listen_address tcp://localhost:1234 \
-  --client_listen_address $HOME/run/fix-bridge.sock \
+  --client_listen_address $HOME/run/fix-bridge-2.sock \
   --init_missing_md_entry_type_to_zero=true \
   --oms_route_by_strategy=false \
   --fix_comp_id "fix-bridge" \
