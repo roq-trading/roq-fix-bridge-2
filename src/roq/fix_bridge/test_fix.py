@@ -9,8 +9,8 @@ import simplefix
 
 FIX = "FIX.4.4"
 
-SENDER_COMP_ID = "roq-fix-client-test"
-TARGET_COMP_ID = "roq-fix-bridge"
+SENDER_COMP_ID = "fix-client"
+TARGET_COMP_ID = "fix-bridge"
 
 USERNAME = "trader"
 PASSWORD = "secret"
