@@ -1,7 +1,36 @@
-FIX Bridge
+# [roq-fix-bridge](https://roq-trading.com/docs/reference/clients/bridges/roq-fix-bridge/)
 
-!!! WORK IN PROGRESS !!!
+Roq's FIX bridge.
 
-This project is the source for the roq-fix-bridge-2 package, a strategic replacement of the roq-fix-bridge package.
 
-All FIX business logic has been moved into the roq-fix library allowing us to fully separate the network layer.
+## Contact
+
+Please reach out by [email](mailto:info@roq-trading.com) if you're interested in licensing this software.
+
+
+## Documentation
+
+Reference documentation can be found [here](https://roq-trading.com/docs/reference/clients/bridges/roq-fix-bridge/).
+
+
+## Building
+
+This is proprietary software: you will **NOT** be able to build this project!
+
+
+## Links
+
+* [Roq GmbH (website)](https://roq-trading.com/)
+* [Contact (email)](mailto:info@roq-trading.com)
+* [Documentation](https://roq-trading.com/docs/)
+* [Releases](https://roq-trading.com/docs/releases/)
+* [Gateways](https://roq-trading.com/docs/introduction/gateways/)
+* [Samples](https://github.com/roq-trading/roq-cpp-samples/)
+* [Pricing](https://roq-trading.com/#pricing)
+* [LinkedIn](https://www.linkedin.com/company/35447832/)
+* [Telegram](https://t.me/roq_trading/)
+
+
+## License
+
+BSD-3
