@@ -9,7 +9,6 @@ set(SOURCES
     fix_log.cpp
     session.cpp
     session_manager.cpp
-    settings.cpp
     shared.cpp
     main.cpp)
 

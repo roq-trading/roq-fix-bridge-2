@@ -1,5 +1,7 @@
 set(TARGET_NAME ${PROJECT_NAME}-flags)
 
+set(SOURCES settings.cpp)
+
 include(RoqAutogen)
 
 set(NAMESPACE "roq/fix_bridge/flags")
@@ -55,7 +57,7 @@ roq_gitignore(
   ${AUTOGEN_HEADERS}
   ${AUTOGEN_SOURCES})
 
-add_library(${TARGET_NAME} OBJECT ${AUTOGEN_SOURCES})
+add_library(${TARGET_NAME} OBJECT ${SOURCES} ${AUTOGEN_SOURCES})
 
 add_dependencies(${TARGET_NAME} ${TARGET_NAME}-autogen-headers)
 

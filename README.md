@@ -13,9 +13,37 @@ Please reach out by [email](mailto:info@roq-trading.com) if you're interested in
 Reference documentation can be found [here](https://roq-trading.com/docs/reference/clients/bridges/roq-fix-bridge/).
 
 
+## Prerequisites
+
+> Use `stable` for (the approx. monthly) release build.
+> Use `unstable` for the more regularly updated development builds.
+
+### Initialize sub-modules
+
+```bash
+git submodule update --init --recursive
+```
+
+### Create development environment
+
+```bash
+scripts/create_conda_env unstable debug
+```
+
+### Activate environment
+
+```bash
+source opt/conda/bin/activate dev
+```
+
+
 ## Building
 
-This is proprietary software: you will **NOT** be able to build this project!
+> Sometimes you may have to delete CMakeCache.txt if CMake has already cached an incorrect configuration.
+
+```bash
+cmake . && make -j4
+```
 
 
 ## Links
@@ -33,4 +61,4 @@ This is proprietary software: you will **NOT** be able to build this project!
 
 ## License
 
-BSD-3
+The project is released under the terms of the BSD-3 license.

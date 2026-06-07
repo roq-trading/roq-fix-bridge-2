@@ -14,24 +14,26 @@
 
 namespace roq {
 namespace fix_bridge {
+namespace flags {
 
 struct Settings final : public client::flags::Settings {
   explicit Settings(args::Parser const &);
 
-  flags::Common common;
-  flags::FIX fix;
-  flags::Messaging messaging;
-  flags::OMS oms;
-  flags::Test test;
+  Common common;
+  FIX fix;
+  Messaging messaging;
+  OMS oms;
+  Test test;
 };
 
+}  // namespace flags
 }  // namespace fix_bridge
 }  // namespace roq
 
 template <>
-struct fmt::formatter<roq::fix_bridge::Settings> {
+struct fmt::formatter<roq::fix_bridge::flags::Settings> {
   constexpr auto parse(format_parse_context &context) { return std::begin(context); }
-  auto format(roq::fix_bridge::Settings const &value, format_context &context) const {
+  auto format(roq::fix_bridge::flags::Settings const &value, format_context &context) const {
     using namespace std::literals;
     return fmt::format_to(
         context.out(),

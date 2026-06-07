@@ -1,6 +1,6 @@
 /* Copyright (c) 2017-2026, Hans Erik Thrane */
 
-#include "roq/fix_bridge/settings.hpp"
+#include "roq/fix_bridge/flags/settings.hpp"
 
 #include "roq/logging.hpp"
 
@@ -10,6 +10,7 @@ using namespace std::literals;
 
 namespace roq {
 namespace fix_bridge {
+namespace flags {
 
 Settings::Settings(args::Parser const &args)
     : client::flags::Settings{args}, common{flags::Common::create()}, fix{flags::FIX::create()}, messaging{flags::Messaging::create()},
@@ -17,5 +18,6 @@ Settings::Settings(args::Parser const &args)
   log::info("settings={}"sv, *this);
 }
 
+}  // namespace flags
 }  // namespace fix_bridge
 }  // namespace roq

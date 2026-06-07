@@ -5,6 +5,21 @@
 namespace roq {
 namespace fix_bridge {
 
+// === CONSTANTS ===
+
+namespace {
+auto const FLAGS = Mask{
+    io::fs::Flags::WRITE_ONLY,
+    io::fs::Flags::CREATE,
+    io::fs::Flags::APPEND,
+};
+auto const MODE = Mask{
+    io::fs::Mode::USER_READ_WRITE,
+    io::fs::Mode::GROUP_READ_WRITE,
+    io::fs::Mode::OTHERS_READ_WRITE,
+};
+}  // namespace
+
 // === HELPERS ===
 
 namespace {
@@ -12,17 +27,7 @@ auto create_file(auto &path) -> std::unique_ptr<io::fs::File> {
   if (std::empty(path)) {
     return {};
   }
-  auto flags = Mask{
-      io::fs::Flags::WRITE_ONLY,
-      io::fs::Flags::CREATE,
-      io::fs::Flags::APPEND,
-  };
-  auto mode = Mask{
-      io::fs::Mode::USER_READ_WRITE,
-      io::fs::Mode::GROUP_READ_WRITE,
-      io::fs::Mode::OTHERS_READ_WRITE,
-  };
-  return std::make_unique<io::fs::File>(path, flags, mode);
+  return std::make_unique<io::fs::File>(path, FLAGS, MODE);
 }
 }  // namespace
 
